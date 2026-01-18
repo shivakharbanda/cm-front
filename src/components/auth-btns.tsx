@@ -14,8 +14,8 @@ export function AuthButtons({ variant, onItemClick }: AuthButtonsProps) {
     const { isAuthenticated, logout } = useAuth()
     const { isInstallAvailable, promptInstall, isStandalone } = usePWAInstall()
 
-    const handleLogout = () => {
-        logout()
+    const handleLogout = async () => {
+        await logout()
         onItemClick?.()
     }
 

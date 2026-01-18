@@ -31,8 +31,8 @@ export default defineConfig(({ mode }) => {
           ]
         },
         manifest: {
-          name: "Journal Club",
-          short_name: "Journal Club",
+          name: "CreatorModo",
+          short_name: "CreatorModo",
           start_url: "/",
           display: "standalone",
           background_color: "#ffffff",

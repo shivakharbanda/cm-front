@@ -2,45 +2,70 @@ import { createContext, useContext, useState, useEffect, useMemo, useCallback } 
 import { useNavigate } from "react-router-dom"
 import {
 	login as authLogin,
-	clearTokens,
-	isAuthenticated as checkAuth,
-	getAccessToken
+	logout as authLogout,
+	getCurrentUser,
+	User
 } from "@/lib/auth"
 
 type AuthContextType = {
 	isAuthenticated: boolean
+	loading: boolean
+	user: User | null
 	login: (email: string, password: string) => Promise<void>
-	logout: () => void
-	accessToken: string | null
+	logout: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => checkAuth())
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
+	const [user, setUser] = useState<User | null>(null)
 	const navigate = useNavigate()
 
+	// Check auth status on mount
 	useEffect(() => {
-		setIsAuthenticated(checkAuth())
+		const checkAuth = async () => {
+			try {
+				const currentUser = await getCurrentUser()
+				setUser(currentUser)
+				setIsAuthenticated(true)
+			} catch {
+				// Not authenticated or token expired
+				setUser(null)
+				setIsAuthenticated(false)
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		checkAuth()
 	}, [])
 
 	const login = async (email: string, password: string) => {
-		await authLogin(email, password)
+		const loggedInUser = await authLogin(email, password)
+		setUser(loggedInUser)
 		setIsAuthenticated(true)
 	}
 
-	const logout = useCallback(() => {
-		clearTokens()
+	const logout = useCallback(async () => {
+		try {
+			await authLogout()
+		} catch {
+			// Ignore errors during logout
+		}
+		setUser(null)
 		setIsAuthenticated(false)
 		navigate("/login")
 	}, [navigate])
 
 	const value = useMemo(() => ({
 		isAuthenticated,
+		loading,
+		user,
 		login,
 		logout,
-		accessToken: getAccessToken(),
-	}), [isAuthenticated, logout])
+	}), [isAuthenticated, loading, user, logout])
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

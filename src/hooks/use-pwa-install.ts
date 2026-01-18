@@ -65,7 +65,7 @@ export function usePWAInstall(): PWAInstallReturn {
   }, [])
 
   const showInstallToast = useCallback((): void => {
-    toast("📱 Install Journal Club", {
+    toast("📱 Install CreatorModo", {
       description: "Get quick access from your home screen for a better experience!",
       action: {
         label: "Install",
@@ -116,8 +116,8 @@ export function usePWAInstall(): PWAInstallReturn {
 
     const handleAppInstalled = (): void => {
       setInstallState('installed')
-      toast.success("🎉 Journal Club Installed!", {
-        description: "You can now access Journal Club from your home screen.",
+      toast.success("🎉 CreatorModo Installed!", {
+        description: "You can now access CreatorModo from your home screen.",
       })
     }
 

@@ -21,7 +21,7 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
-import { X, Plus, AlertCircle, ChevronLeft, ChevronRight, Check, Image, Video, Layers } from 'lucide-react'
+import { X, Plus, AlertCircle, ChevronLeft, Check, Image, Video, Layers } from 'lucide-react'
 import { createAutomation } from '@/lib/automations'
 import { getInstagramPosts } from '@/lib/instagram'
 import type { Automation, TriggerType, InstagramPost } from '@/types'

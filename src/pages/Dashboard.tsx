@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
@@ -15,15 +15,16 @@ import {
   Zap,
   AlertCircle,
   RefreshCw,
+  Loader2,
 } from 'lucide-react'
 import { getAutomations, activateAutomation, deactivateAutomation, deleteAutomation } from '@/lib/automations'
-import { getInstagramAccount } from '@/lib/instagram'
+import { getInstagramAccount, getInstagramAuthUrl, disconnectInstagramAccount } from '@/lib/instagram'
 import type { Automation, InstagramAccount } from '@/types'
 import { CreateAutomationDialog } from '@/components/CreateAutomationDialog'
 
 export default function Dashboard() {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, loading: authLoading } = useAuth()
 
   const [instagramAccount, setInstagramAccount] = useState<InstagramAccount | null>(null)
   const [automations, setAutomations] = useState<Automation[]>([])
@@ -31,9 +32,10 @@ export default function Dashboard() {
   const [error, setError] = useState<string | null>(null)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [showCreateDialog, setShowCreateDialog] = useState(false)
+  const [connectLoading, setConnectLoading] = useState(false)
 
   const fetchData = useCallback(async () => {
-    if (!isAuthenticated) return
+    if (!isAuthenticated || authLoading) return
 
     setLoading(true)
     setError(null)
@@ -50,15 +52,16 @@ export default function Dashboard() {
     } finally {
       setLoading(false)
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, authLoading])
 
   useEffect(() => {
+    if (authLoading) return
     if (!isAuthenticated) {
       navigate('/login')
       return
     }
     fetchData()
-  }, [isAuthenticated, navigate, fetchData])
+  }, [isAuthenticated, authLoading, navigate, fetchData])
 
   const handleToggleActive = async (automation: Automation) => {
     setActionLoading(automation.id)
@@ -96,7 +99,35 @@ export default function Dashboard() {
     setShowCreateDialog(false)
   }
 
-  if (!isAuthenticated) {
+  const handleConnectInstagram = async () => {
+    setConnectLoading(true)
+    setError(null)
+    try {
+      const { auth_url } = await getInstagramAuthUrl()
+      window.location.href = auth_url
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to start Instagram connection')
+      setConnectLoading(false)
+    }
+  }
+
+  const handleDisconnectInstagram = async () => {
+    if (!confirm('Are you sure you want to disconnect your Instagram account? This will also remove all automations.')) return
+
+    setConnectLoading(true)
+    setError(null)
+    try {
+      await disconnectInstagramAccount()
+      setInstagramAccount(null)
+      setAutomations([])
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to disconnect Instagram account')
+    } finally {
+      setConnectLoading(false)
+    }
+  }
+
+  if (authLoading || !isAuthenticated) {
     return null
   }
 
@@ -149,8 +180,17 @@ export default function Dashboard() {
                   Connected since {new Date(instagramAccount.created_at).toLocaleDateString()}
                 </p>
               </div>
-              <Button variant="outline" size="sm" disabled>
-                Manage (Coming Soon)
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleDisconnectInstagram}
+                disabled={connectLoading}
+              >
+                {connectLoading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  'Disconnect'
+                )}
               </Button>
             </div>
           ) : (
@@ -158,9 +198,13 @@ export default function Dashboard() {
               <p className="text-muted-foreground mb-4">
                 Connect your Instagram account to start creating automations
               </p>
-              <Button disabled>
-                <Instagram className="h-4 w-4 mr-2" />
-                Connect Instagram (Coming Soon)
+              <Button onClick={handleConnectInstagram} disabled={connectLoading}>
+                {connectLoading ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <Instagram className="h-4 w-4 mr-2" />
+                )}
+                Connect Instagram
               </Button>
             </div>
           )}
