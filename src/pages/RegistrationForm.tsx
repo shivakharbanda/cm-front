@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Eye, EyeOff, Mail, Lock, Instagram } from 'lucide-react'
 import { register } from '@/lib/auth'
+import { appConfig } from '@/config/app'
 
 export default function RegistrationForm() {
     const navigate = useNavigate()
@@ -102,7 +103,7 @@ export default function RegistrationForm() {
                     <div className="flex items-center justify-center mb-4">
                         <div className="flex items-center space-x-2">
                             <Instagram className="h-8 w-8 text-primary" />
-                            <span className="text-2xl font-bold text-primary">InstaAuto</span>
+                            <span className="text-2xl font-bold text-primary">{appConfig.name}</span>
                         </div>
                     </div>
                     <CardTitle className="text-2xl font-semibold">Create your account</CardTitle>
