@@ -1,10 +1,9 @@
+import React from 'react'
 import { Smartphone, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { usePWAInstall } from '@/hooks/use-pwa-install'
 
-
 // Floating install prompt for mobile
-import React from 'react'
 
 export function InstallPrompt(): React.JSX.Element | null {
   const { 
