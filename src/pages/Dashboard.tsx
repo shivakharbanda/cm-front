@@ -12,6 +12,7 @@ import {
   Plus,
   Trash2,
   MessageSquare,
+  MessageCircle,
   Zap,
   AlertCircle,
   RefreshCw,
@@ -259,7 +260,7 @@ export default function Dashboard() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <h3 className="font-medium truncate">{automation.name}</h3>
                         <Badge
                           variant={automation.is_active ? 'default' : 'secondary'}
@@ -271,6 +272,12 @@ export default function Dashboard() {
                             ? 'All Comments'
                             : 'Keyword'}
                         </Badge>
+                        {automation.comment_reply_enabled && (
+                          <Badge variant="outline" className="gap-1">
+                            <MessageCircle className="h-3 w-3" />
+                            Reply
+                          </Badge>
+                        )}
                       </div>
 
                       {automation.trigger_type === 'keyword' && automation.keywords && (

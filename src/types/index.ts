@@ -44,6 +44,8 @@ export interface Automation {
   trigger_type: TriggerType
   keywords?: string[]
   dm_message_template: string
+  comment_reply_enabled: boolean
+  comment_reply_template?: string | null
   is_active: boolean
   created_at: string
   updated_at: string
@@ -56,6 +58,8 @@ export interface AutomationCreate {
   trigger_type: TriggerType
   keywords?: string[]
   dm_message_template: string
+  comment_reply_enabled?: boolean
+  comment_reply_template?: string | null
 }
 
 export interface AutomationUpdate {
@@ -63,6 +67,8 @@ export interface AutomationUpdate {
   trigger_type?: TriggerType
   keywords?: string[]
   dm_message_template?: string
+  comment_reply_enabled?: boolean
+  comment_reply_template?: string | null
 }
 
 // DM Log types

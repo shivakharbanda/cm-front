@@ -21,6 +21,7 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Switch } from '@/components/ui/switch'
 import { X, Plus, AlertCircle, ChevronLeft, Check, Image, Video, Layers } from 'lucide-react'
 import { createAutomation } from '@/lib/automations'
 import { getInstagramPosts } from '@/lib/instagram'
@@ -52,6 +53,8 @@ export function CreateAutomationDialog({
     name: '',
     trigger_type: 'all_comments' as TriggerType,
     dm_message_template: '',
+    comment_reply_enabled: false,
+    comment_reply_template: '',
   })
   const [keywords, setKeywords] = useState<string[]>([])
   const [keywordInput, setKeywordInput] = useState('')
@@ -90,6 +93,8 @@ export function CreateAutomationDialog({
       name: '',
       trigger_type: 'all_comments',
       dm_message_template: '',
+      comment_reply_enabled: false,
+      comment_reply_template: '',
     })
     setKeywords([])
     setKeywordInput('')
@@ -158,6 +163,10 @@ export function CreateAutomationDialog({
       newErrors.keywords = 'At least one keyword is required'
     }
 
+    if (formData.comment_reply_enabled && !formData.comment_reply_template.trim()) {
+      newErrors.comment_reply_template = 'Comment reply message is required when enabled'
+    }
+
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -178,6 +187,10 @@ export function CreateAutomationDialog({
         trigger_type: formData.trigger_type,
         keywords: formData.trigger_type === 'keyword' ? keywords : undefined,
         dm_message_template: formData.dm_message_template.trim(),
+        comment_reply_enabled: formData.comment_reply_enabled,
+        comment_reply_template: formData.comment_reply_enabled
+          ? formData.comment_reply_template.trim()
+          : null,
       })
 
       onSuccess(automation)
@@ -427,6 +440,43 @@ export function CreateAutomationDialog({
               />
               {errors.dm_message_template && (
                 <p className="text-sm text-destructive">{errors.dm_message_template}</p>
+              )}
+            </div>
+
+            {/* Comment Reply Section */}
+            <div className="space-y-3 pt-2 border-t">
+              <div className="flex items-center justify-between">
+                <div className="space-y-0.5">
+                  <Label htmlFor="comment_reply_enabled">Reply to comment publicly</Label>
+                  <p className="text-xs text-muted-foreground">
+                    Also post a public reply to the comment
+                  </p>
+                </div>
+                <Switch
+                  id="comment_reply_enabled"
+                  checked={formData.comment_reply_enabled}
+                  onCheckedChange={(checked) =>
+                    setFormData(prev => ({ ...prev, comment_reply_enabled: checked }))
+                  }
+                />
+              </div>
+
+              {formData.comment_reply_enabled && (
+                <div className="space-y-2">
+                  <Label htmlFor="comment_reply_template">Comment Reply Message</Label>
+                  <Textarea
+                    id="comment_reply_template"
+                    name="comment_reply_template"
+                    placeholder="Enter the public reply message..."
+                    value={formData.comment_reply_template}
+                    onChange={handleInputChange}
+                    rows={3}
+                    className={errors.comment_reply_template ? 'border-destructive' : ''}
+                  />
+                  {errors.comment_reply_template && (
+                    <p className="text-sm text-destructive">{errors.comment_reply_template}</p>
+                  )}
+                </div>
               )}
             </div>
           </form>
