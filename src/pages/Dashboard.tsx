@@ -11,6 +11,7 @@ import {
   Instagram,
   Plus,
   Trash2,
+  Pencil,
   MessageSquare,
   MessageCircle,
   Zap,
@@ -22,6 +23,7 @@ import { getAutomations, activateAutomation, deactivateAutomation, deleteAutomat
 import { getInstagramAccount, getInstagramAuthUrl, disconnectInstagramAccount } from '@/lib/instagram'
 import type { Automation, InstagramAccount } from '@/types'
 import { CreateAutomationDialog } from '@/components/CreateAutomationDialog'
+import { EditAutomationDialog } from '@/components/EditAutomationDialog'
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -33,6 +35,7 @@ export default function Dashboard() {
   const [error, setError] = useState<string | null>(null)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
   const [showCreateDialog, setShowCreateDialog] = useState(false)
+  const [editingAutomation, setEditingAutomation] = useState<Automation | null>(null)
   const [connectLoading, setConnectLoading] = useState(false)
 
   const fetchData = useCallback(async () => {
@@ -98,6 +101,15 @@ export default function Dashboard() {
   const handleAutomationCreated = (newAutomation: Automation) => {
     setAutomations(prev => [newAutomation, ...prev])
     setShowCreateDialog(false)
+  }
+
+  const handleEdit = (automation: Automation) => {
+    setEditingAutomation(automation)
+  }
+
+  const handleAutomationUpdated = (updated: Automation) => {
+    setAutomations(prev => prev.map(a => a.id === updated.id ? updated : a))
+    setEditingAutomation(null)
   }
 
   const handleConnectInstagram = async () => {
@@ -311,6 +323,14 @@ export default function Dashboard() {
                       <Button
                         variant="ghost"
                         size="icon"
+                        onClick={() => handleEdit(automation)}
+                        disabled={actionLoading === automation.id}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
                         onClick={() => handleDelete(automation.id)}
                         disabled={actionLoading === automation.id}
                       >
@@ -332,6 +352,16 @@ export default function Dashboard() {
           onOpenChange={setShowCreateDialog}
           instagramAccountId={instagramAccount.id}
           onSuccess={handleAutomationCreated}
+        />
+      )}
+
+      {/* Edit Automation Dialog */}
+      {editingAutomation && (
+        <EditAutomationDialog
+          open={!!editingAutomation}
+          onOpenChange={(open) => !open && setEditingAutomation(null)}
+          automation={editingAutomation}
+          onSuccess={handleAutomationUpdated}
         />
       )}
     </div>
