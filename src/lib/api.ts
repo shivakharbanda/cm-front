@@ -42,6 +42,11 @@ export async function fetcher<T = unknown>(path: string, options?: RequestInit):
     throw new Error(`API error ${res.status}: ${errorMessage}`);
   }
 
+  // Handle 204 No Content - return early, nothing to parse
+  if (res.status === 204) {
+    return undefined as T;
+  }
+
   // Handle empty responses
   const contentType = res.headers.get('content-type');
   if (contentType && contentType.includes('application/json')) {
