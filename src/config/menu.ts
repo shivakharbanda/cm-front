@@ -2,6 +2,7 @@ import {
     LayoutDashboard,
     Instagram,
     Settings,
+    Link2,
     LucideIcon
 } from 'lucide-react'
 
@@ -19,6 +20,11 @@ export const mainMenu: MenuType = [
         title: 'Dashboard',
         url: '/',
         icon: LayoutDashboard
+    },
+    {
+        title: 'Link in Bio',
+        url: '/bio',
+        icon: Link2
     },
     {
         title: 'Instagram',

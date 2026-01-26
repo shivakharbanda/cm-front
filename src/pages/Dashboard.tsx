@@ -18,10 +18,12 @@ import {
   AlertCircle,
   RefreshCw,
   Loader2,
+  Users,
+  BarChart3,
 } from 'lucide-react'
-import { getAutomations, activateAutomation, deactivateAutomation, deleteAutomation } from '@/lib/automations'
+import { getAutomations, activateAutomation, deactivateAutomation, deleteAutomation, getAutomationsSummary } from '@/lib/automations'
 import { getInstagramAccount, getInstagramAuthUrl, disconnectInstagramAccount } from '@/lib/instagram'
-import type { Automation, InstagramAccount } from '@/types'
+import type { Automation, InstagramAccount, AutomationAnalyticsSummary } from '@/types'
 import { CreateAutomationDialog } from '@/components/CreateAutomationDialog'
 import { EditAutomationDialog } from '@/components/EditAutomationDialog'
 
@@ -31,6 +33,7 @@ export default function Dashboard() {
 
   const [instagramAccount, setInstagramAccount] = useState<InstagramAccount | null>(null)
   const [automations, setAutomations] = useState<Automation[]>([])
+  const [analyticsSummary, setAnalyticsSummary] = useState<Record<string, AutomationAnalyticsSummary>>({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
@@ -45,12 +48,14 @@ export default function Dashboard() {
     setError(null)
 
     try {
-      const [account, automationsList] = await Promise.all([
+      const [account, automationsList, summary] = await Promise.all([
         getInstagramAccount(),
         getAutomations(),
+        getAutomationsSummary(),
       ])
       setInstagramAccount(account)
       setAutomations(automationsList)
+      setAnalyticsSummary(summary)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load data')
     } finally {
@@ -310,6 +315,27 @@ export default function Dashboard() {
                       <p className="text-xs text-muted-foreground mt-2">
                         Post ID: {automation.post_id}
                       </p>
+
+                      {/* Inline Analytics */}
+                      <div className="flex items-center gap-4 mt-3 pt-3 border-t">
+                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                          <MessageSquare className="h-4 w-4" />
+                          <span>{analyticsSummary[automation.id]?.dms_sent ?? 0} DMs</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                          <Users className="h-4 w-4" />
+                          <span>{analyticsSummary[automation.id]?.people_reached ?? 0} people</span>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="ml-auto"
+                          onClick={() => navigate(`/automations/${automation.id}/analytics`)}
+                        >
+                          <BarChart3 className="h-4 w-4 mr-1" />
+                          Analytics
+                        </Button>
+                      </div>
                     </div>
 
                     <div className="flex items-center gap-3">

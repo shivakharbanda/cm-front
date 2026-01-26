@@ -82,6 +82,49 @@ export interface DMSentLog {
   sent_at: string
 }
 
+// Automation Analytics types
+export interface AutomationAnalyticsSummary {
+  dms_sent: number
+  people_reached: number
+}
+
+export interface DatePoint {
+  date: string
+  value: number
+}
+
+export interface AutomationAnalytics {
+  automation_id: string
+  total_dms_sent: number
+  total_dms_failed: number
+  dm_success_rate: number
+  unique_people_reached: number
+  total_comment_replies: number
+  total_comment_replies_failed: number
+  comment_reply_success_rate: number
+  dms_by_date: DatePoint[]
+  replies_by_date: DatePoint[]
+}
+
+// Commenter types
+export interface CommenterInfo {
+  user_id: string
+  username: string | null
+  name: string | null
+  biography: string | null
+  followers_count: number | null
+  media_count: number | null
+  profile_picture_url: string | null
+  dm_sent_at: string
+  status: string
+}
+
+export interface AutomationCommentersResponse {
+  automation_id: string
+  commenters: CommenterInfo[]
+  total: number
+}
+
 // API Response types
 export interface TokenResponse {
   access_token: string

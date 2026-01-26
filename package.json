@@ -11,6 +11,9 @@
     "build:gh": "tsc -b && cross-env VITE_BASE_URL=/react-shadcn-starter/ VITE_USE_HASH_ROUTE=true vite build"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.0",
@@ -37,6 +40,7 @@
     "react-h5-audio-player": "^3.10.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.3.0",
+    "recharts": "^3.7.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.14",
