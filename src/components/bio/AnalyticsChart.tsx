@@ -36,11 +36,11 @@ export function AnalyticsChart({ viewsData, clicksData, className }: AnalyticsCh
     }
   }
 
-  const formatTooltipLabel = (dateStr: string) => {
+  const formatTooltipLabel = (label: React.ReactNode) => {
     try {
-      return format(parseISO(dateStr), 'MMMM d, yyyy')
+      return format(parseISO(String(label)), 'MMMM d, yyyy')
     } catch {
-      return dateStr
+      return String(label)
     }
   }
 
