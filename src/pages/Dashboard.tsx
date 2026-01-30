@@ -289,6 +289,9 @@ export default function Dashboard() {
                             ? 'All Comments'
                             : 'Keyword'}
                         </Badge>
+                        <Badge variant="outline">
+                          {automation.message_type === 'carousel' ? 'Carousel' : 'Text'}
+                        </Badge>
                         {automation.comment_reply_enabled && (
                           <Badge variant="outline" className="gap-1">
                             <MessageCircle className="h-3 w-3" />
@@ -309,7 +312,11 @@ export default function Dashboard() {
 
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <MessageSquare className="h-4 w-4" />
-                        <span className="truncate">{automation.dm_message_template}</span>
+                        <span className="truncate">
+                          {automation.message_type === 'carousel' && automation.carousel_elements
+                            ? `Carousel with ${automation.carousel_elements.length} card${automation.carousel_elements.length === 1 ? '' : 's'}`
+                            : automation.dm_message_template}
+                        </span>
                       </div>
 
                       <p className="text-xs text-muted-foreground mt-2">
@@ -377,6 +384,7 @@ export default function Dashboard() {
           open={showCreateDialog}
           onOpenChange={setShowCreateDialog}
           instagramAccountId={instagramAccount.id}
+          instagramUsername={instagramAccount.username}
           onSuccess={handleAutomationCreated}
         />
       )}
@@ -387,6 +395,7 @@ export default function Dashboard() {
           open={!!editingAutomation}
           onOpenChange={(open) => !open && setEditingAutomation(null)}
           automation={editingAutomation}
+          instagramUsername={instagramAccount?.username}
           onSuccess={handleAutomationUpdated}
         />
       )}
