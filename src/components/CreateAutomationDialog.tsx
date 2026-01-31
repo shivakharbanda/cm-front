@@ -27,6 +27,7 @@ import { createAutomation } from '@/lib/automations'
 import { getInstagramPosts } from '@/lib/instagram'
 import { CarouselCardEditor } from '@/components/CarouselCardEditor'
 import { CarouselPreview } from '@/components/CarouselPreview'
+import { TextPreview } from '@/components/TextPreview'
 import type { Automation, TriggerType, MessageType, CarouselElement, InstagramPost } from '@/types'
 
 interface CreateAutomationDialogProps {
@@ -253,7 +254,7 @@ export function CreateAutomationDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className={`max-h-[85vh] overflow-hidden flex flex-col ${step === 'configure' && formData.message_type === 'carousel' ? 'sm:max-w-[1050px]' : 'sm:max-w-[600px]'}`}>
+      <DialogContent className={`max-h-[85vh] overflow-hidden flex flex-col ${step === 'configure' && formData.message_type === 'carousel' ? 'sm:max-w-[1050px]' : step === 'configure' && formData.message_type === 'text' ? 'sm:max-w-[1000px]' : 'sm:max-w-[600px]'}`}>
         <DialogHeader>
           <DialogTitle>
             {step === 'select-post' ? 'Select a Post' : 'Configure Automation'}
@@ -341,8 +342,8 @@ export function CreateAutomationDialog({
             )}
           </div>
         ) : (
-          <div className={`flex-1 overflow-hidden ${formData.message_type === 'carousel' ? 'flex gap-6' : ''}`}>
-            <form onSubmit={handleSubmit} className={`flex-1 overflow-y-auto space-y-4 ${formData.message_type === 'carousel' ? 'min-w-0' : ''}`}>
+          <div className="flex-1 overflow-y-auto flex flex-col sm:flex-row gap-6">
+            <form onSubmit={handleSubmit} className="flex-1 space-y-4 min-w-0 px-4 py-2">
               {errors.general && (
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
@@ -555,10 +556,20 @@ export function CreateAutomationDialog({
 
             {/* Side-by-side preview panel for carousel mode */}
             {formData.message_type === 'carousel' && (
-              <div className="hidden sm:flex w-[340px] flex-shrink-0 flex-col">
+              <div className="hidden sm:flex w-[340px] flex-shrink-0 flex-col sticky top-0 h-fit">
                 <CarouselPreview
                   message={formData.dm_message_template}
                   cards={carouselElements}
+                  username={instagramUsername}
+                />
+              </div>
+            )}
+
+            {/* Side-by-side preview panel for text mode */}
+            {formData.message_type === 'text' && (
+              <div className="hidden sm:flex w-[340px] flex-shrink-0 flex-col sticky top-0 h-fit">
+                <TextPreview
+                  message={formData.dm_message_template}
                   username={instagramUsername}
                 />
               </div>
