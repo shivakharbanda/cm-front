@@ -505,28 +505,14 @@ export function CreateAutomationDialog({
                   )}
                 </div>
               ) : (
-                <>
-                  <div className="space-y-2">
-                    <Label htmlFor="dm_message_template">Intro Message (optional)</Label>
-                    <Textarea
-                      id="dm_message_template"
-                      name="dm_message_template"
-                      placeholder="Optional text message sent before the carousel..."
-                      value={formData.dm_message_template}
-                      onChange={handleInputChange}
-                      rows={2}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Carousel Cards</Label>
-                    <CarouselCardEditor
-                      cards={carouselElements}
-                      onChange={setCarouselElements}
-                      errors={errors}
-                    />
-                  </div>
-                </>
+                <div className="space-y-2">
+                  <Label>Carousel Cards</Label>
+                  <CarouselCardEditor
+                    cards={carouselElements}
+                    onChange={setCarouselElements}
+                    errors={errors}
+                  />
+                </div>
               )}
 
               {/* Comment Reply Section */}
