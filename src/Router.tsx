@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { AppLayout } from './components/app-layout'
 import NotMatch from './pages/NotMatch'
 import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 import RegistrationForm from './pages/RegistrationForm'
 import LoginForm from './pages/LoginForm'
 import InstagramCallback from './pages/InstagramCallback'
@@ -14,12 +15,13 @@ import AutomationAnalyticsPage from './pages/AutomationAnalyticsPage'
 export default function Router() {
     return (
         <Routes>
-            {/* Public bio page (no auth required, no layout) */}
+            {/* Bare public routes (no app chrome) */}
+            <Route path="" element={<Home />} />
             <Route path="bio/:slug" element={<PublicBioPage />} />
 
             {/* Authenticated routes with app layout */}
             <Route element={<AppLayout />}>
-                <Route path="" element={<Dashboard />} />
+                <Route path="dashboard" element={<Dashboard />} />
                 <Route path="login" element={<LoginForm />} />
                 <Route path="register" element={<RegistrationForm />} />
                 <Route path="auth/instagram/callback" element={<InstagramCallback />} />

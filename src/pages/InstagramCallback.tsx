@@ -45,7 +45,7 @@ export default function InstagramCallback() {
         await handleInstagramCallback(code)
         setStatus('success')
         setTimeout(() => {
-          navigate('/')
+          navigate('/dashboard')
         }, 1500)
       } catch (err) {
         setStatus('error')
@@ -98,7 +98,7 @@ export default function InstagramCallback() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
               <div className="flex flex-col gap-2">
-                <Button onClick={() => navigate('/')} variant="outline">
+                <Button onClick={() => navigate('/dashboard')} variant="outline">
                   Back to Dashboard
                 </Button>
               </div>
