@@ -35,7 +35,7 @@ export interface InstagramPostsResponse {
 
 // Automation types
 export type TriggerType = 'all_comments' | 'keyword'
-export type MessageType = 'text' | 'carousel'
+export type MessageType = 'text' | 'carousel' | 'button'
 
 export interface CarouselButton {
   type: string
@@ -50,6 +50,18 @@ export interface CarouselElement {
   buttons: CarouselButton[]
 }
 
+export interface ButtonTemplateButton {
+  type: 'web_url' | 'postback'
+  title: string
+  url?: string
+  payload?: string
+}
+
+export interface ButtonTemplate {
+  text: string
+  buttons: ButtonTemplateButton[]
+}
+
 export interface Automation {
   id: string
   instagram_account_id: string
@@ -60,6 +72,7 @@ export interface Automation {
   message_type: MessageType
   dm_message_template?: string | null
   carousel_elements?: CarouselElement[] | null
+  button_template?: ButtonTemplate | null
   comment_reply_enabled: boolean
   comment_reply_template?: string | null
   is_active: boolean
@@ -76,6 +89,7 @@ export interface AutomationCreate {
   message_type?: MessageType
   dm_message_template: string
   carousel_elements?: CarouselElement[]
+  button_template?: ButtonTemplate
   comment_reply_enabled?: boolean
   comment_reply_template?: string | null
 }
@@ -87,6 +101,7 @@ export interface AutomationUpdate {
   message_type?: MessageType
   dm_message_template?: string
   carousel_elements?: CarouselElement[]
+  button_template?: ButtonTemplate | null
   comment_reply_enabled?: boolean
   comment_reply_template?: string | null
 }
