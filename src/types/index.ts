@@ -152,6 +152,9 @@ export interface CommenterInfo {
   profile_picture_url: string | null
   dm_sent_at: string
   status: string
+  error_message?: string | null
+  error_code?: number | null
+  error_subcode?: number | null
 }
 
 export interface AutomationCommentersResponse {
