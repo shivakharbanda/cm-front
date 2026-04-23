@@ -40,6 +40,16 @@ import { Badge } from '@/components/ui/badge'
 
 type DateRange = '7d' | '30d' | '90d'
 
+type StatusLabel = { variant: 'default' | 'destructive' | 'secondary'; text: string }
+
+function statusLabel(status: string): StatusLabel {
+  if (status === 'sent') return { variant: 'default', text: 'Sent' }
+  if (status === 'permanent_failure') return { variant: 'destructive', text: 'Failed — permanent' }
+  if (status === 'failed') return { variant: 'destructive', text: 'Failed — retrying' }
+  if (status === 'pending') return { variant: 'secondary', text: 'Pending' }
+  return { variant: 'secondary', text: status }
+}
+
 interface MetricCardProps {
   title: string
   value: number | string
@@ -438,10 +448,27 @@ export default function AutomationAnalyticsPage() {
                     )}
                   </div>
 
-                  {/* Status badge */}
-                  <Badge variant={c.status === 'sent' ? 'default' : 'destructive'}>
-                    {c.status}
-                  </Badge>
+                  {/* Status + error reason */}
+                  <div className="flex flex-col items-end gap-1 max-w-[240px]">
+                    {(() => {
+                      const label = statusLabel(c.status)
+                      return <Badge variant={label.variant}>{label.text}</Badge>
+                    })()}
+                    {c.status !== 'sent' && c.error_message && (
+                      <p
+                        className="text-xs text-muted-foreground text-right line-clamp-2"
+                        title={c.error_message}
+                      >
+                        {c.error_message}
+                        {c.error_code != null && (
+                          <span className="ml-1 font-mono">
+                            (Meta {c.error_code}
+                            {c.error_subcode != null ? `.${c.error_subcode}` : ''})
+                          </span>
+                        )}
+                      </p>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
