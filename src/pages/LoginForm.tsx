@@ -66,7 +66,7 @@ export default function LoginForm() {
         setErrors({})
         try {
             await login(formData.email, formData.password)
-            navigate("/", { replace: true })
+            navigate("/dashboard", { replace: true })
         } catch (err: unknown) {
             const message = err instanceof Error ? err.message : "Login failed"
             setErrors({ general: message })
