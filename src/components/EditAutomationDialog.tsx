@@ -26,7 +26,19 @@ import { updateAutomation } from '@/lib/automations'
 import { CarouselCardEditor } from '@/components/CarouselCardEditor'
 import { CarouselPreview } from '@/components/CarouselPreview'
 import { TextPreview } from '@/components/TextPreview'
-import type { Automation, TriggerType, MessageType, CarouselElement } from '@/types'
+import { ButtonTemplateEditor } from '@/components/ButtonTemplateEditor'
+import { ButtonPreview } from '@/components/ButtonPreview'
+import type {
+  Automation,
+  TriggerType,
+  MessageType,
+  CarouselElement,
+  ButtonTemplate,
+} from '@/types'
+
+function emptyButtonTemplate(): ButtonTemplate {
+  return { text: '', buttons: [{ type: 'web_url', title: '', url: '' }] }
+}
 
 interface EditAutomationDialogProps {
   open: boolean
@@ -56,6 +68,7 @@ export function EditAutomationDialog({
   const [carouselElements, setCarouselElements] = useState<CarouselElement[]>([
     { title: '', subtitle: '', image_url: '', buttons: [{ type: 'web_url', url: '', title: '' }] },
   ])
+  const [buttonTemplate, setButtonTemplate] = useState<ButtonTemplate>(emptyButtonTemplate())
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false)
 
@@ -76,6 +89,11 @@ export function EditAutomationDialog({
         automation.carousel_elements && automation.carousel_elements.length > 0
           ? automation.carousel_elements
           : [{ title: '', subtitle: '', image_url: '', buttons: [{ type: 'web_url', url: '', title: '' }] }]
+      )
+      setButtonTemplate(
+        automation.button_template && automation.button_template.buttons.length > 0
+          ? automation.button_template
+          : emptyButtonTemplate()
       )
       setErrors({})
     }
@@ -129,7 +147,7 @@ export function EditAutomationDialog({
       if (!formData.dm_message_template.trim()) {
         newErrors.dm_message_template = 'DM message is required'
       }
-    } else {
+    } else if (formData.message_type === 'carousel') {
       if (carouselElements.length === 0) {
         newErrors.carousel_elements = 'At least one card is required'
       }
@@ -148,6 +166,34 @@ export function EditAutomationDialog({
             newErrors[`card_${i}_btn_${bi}_url`] = 'Button URL is required'
           }
         })
+      })
+    } else if (formData.message_type === 'button') {
+      if (!buttonTemplate.text.trim()) {
+        newErrors.button_text = 'Message body is required'
+      } else if (buttonTemplate.text.length > 640) {
+        newErrors.button_text = 'Message body must be 640 characters or fewer'
+      }
+      if (buttonTemplate.buttons.length < 1 || buttonTemplate.buttons.length > 3) {
+        newErrors.button_template = 'Add between 1 and 3 buttons'
+      }
+      buttonTemplate.buttons.forEach((btn, i) => {
+        if (!btn.title.trim()) {
+          newErrors[`button_${i}_title`] = 'Button title is required'
+        } else if (btn.title.length > 20) {
+          newErrors[`button_${i}_title`] = 'Max 20 characters'
+        }
+        if (btn.type === 'web_url') {
+          const url = (btn.url ?? '').trim()
+          if (!url) {
+            newErrors[`button_${i}_url`] = 'URL is required'
+          } else if (!url.startsWith('https://')) {
+            newErrors[`button_${i}_url`] = 'URL must start with https://'
+          }
+        } else if (btn.type === 'postback') {
+          if (!(btn.payload ?? '').trim()) {
+            newErrors[`button_${i}_payload`] = 'Payload is required'
+          }
+        }
       })
     }
 
@@ -179,6 +225,7 @@ export function EditAutomationDialog({
         message_type: formData.message_type,
         dm_message_template: formData.dm_message_template.trim(),
         carousel_elements: formData.message_type === 'carousel' ? carouselElements : undefined,
+        button_template: formData.message_type === 'button' ? buttonTemplate : undefined,
         comment_reply_enabled: formData.comment_reply_enabled,
         comment_reply_template: formData.comment_reply_enabled
           ? formData.comment_reply_template.trim()
@@ -318,16 +365,19 @@ export function EditAutomationDialog({
                 <SelectContent>
                   <SelectItem value="text">Text Message</SelectItem>
                   <SelectItem value="carousel">Carousel</SelectItem>
+                  <SelectItem value="button">Button Template</SelectItem>
                 </SelectContent>
               </Select>
               <p className="text-xs text-muted-foreground">
                 {formData.message_type === 'text'
                   ? 'Send a plain text DM to the commenter'
-                  : 'Send a carousel of cards with images and buttons'}
+                  : formData.message_type === 'carousel'
+                  ? 'Send a carousel of cards with images and buttons'
+                  : 'Send a DM with body text and up to 3 tap buttons'}
               </p>
             </div>
 
-            {formData.message_type === 'text' ? (
+            {formData.message_type === 'text' && (
               <div className="space-y-2">
                 <Label htmlFor="dm_message_template">DM Message</Label>
                 <Textarea
@@ -343,12 +393,23 @@ export function EditAutomationDialog({
                   <p className="text-sm text-destructive">{errors.dm_message_template}</p>
                 )}
               </div>
-            ) : (
+            )}
+            {formData.message_type === 'carousel' && (
               <div className="space-y-2">
                 <Label>Carousel Cards</Label>
                 <CarouselCardEditor
                   cards={carouselElements}
                   onChange={setCarouselElements}
+                  errors={errors}
+                />
+              </div>
+            )}
+            {formData.message_type === 'button' && (
+              <div className="space-y-2">
+                <Label>Button Template</Label>
+                <ButtonTemplateEditor
+                  template={buttonTemplate}
+                  onChange={setButtonTemplate}
                   errors={errors}
                 />
               </div>
@@ -410,6 +471,13 @@ export function EditAutomationDialog({
                 message={formData.dm_message_template}
                 username={instagramUsername}
               />
+            </div>
+          )}
+
+          {/* Side-by-side preview panel for button-template mode */}
+          {formData.message_type === 'button' && (
+            <div className="hidden sm:flex w-[340px] flex-shrink-0 flex-col sticky top-0 h-fit">
+              <ButtonPreview template={buttonTemplate} username={instagramUsername} />
             </div>
           )}
         </div>
