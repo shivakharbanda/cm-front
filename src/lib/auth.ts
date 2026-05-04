@@ -5,6 +5,7 @@ export interface User {
   email: string
   is_active: boolean
   created_at: string
+  email_verified_at: string | null
 }
 
 // Login - cookies are set by the server
@@ -41,6 +42,36 @@ export const getCurrentUser = async (): Promise<User> => {
 export const refreshTokens = async (): Promise<User> => {
   return fetcher<User>('/api/v1/auth/refresh', {
     method: 'POST',
+  })
+}
+
+export const requestPasswordReset = async (email: string): Promise<void> => {
+  await fetcher('/api/v1/auth/password-reset/request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
+}
+
+export const confirmPasswordReset = async (token: string, newPassword: string): Promise<void> => {
+  await fetcher('/api/v1/auth/password-reset/confirm', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token, new_password: newPassword }),
+  })
+}
+
+export const sendEmailVerification = async (): Promise<void> => {
+  await fetcher('/api/v1/auth/email/send-verification', {
+    method: 'POST',
+  })
+}
+
+export const verifyEmail = async (token: string): Promise<void> => {
+  await fetcher('/api/v1/auth/email/verify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
   })
 }
 

@@ -24,8 +24,6 @@ import {
 import { getAutomations, activateAutomation, deactivateAutomation, deleteAutomation, getAutomationsSummary } from '@/lib/automations'
 import { getInstagramAccount, getInstagramAuthUrl, disconnectInstagramAccount } from '@/lib/instagram'
 import type { Automation, InstagramAccount, AutomationAnalyticsSummary } from '@/types'
-import { CreateAutomationDialog } from '@/components/CreateAutomationDialog'
-import { EditAutomationDialog } from '@/components/EditAutomationDialog'
 
 export default function Dashboard() {
   const navigate = useNavigate()
@@ -37,8 +35,6 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [actionLoading, setActionLoading] = useState<string | null>(null)
-  const [showCreateDialog, setShowCreateDialog] = useState(false)
-  const [editingAutomation, setEditingAutomation] = useState<Automation | null>(null)
   const [connectLoading, setConnectLoading] = useState(false)
 
   const fetchData = useCallback(async () => {
@@ -103,18 +99,12 @@ export default function Dashboard() {
     }
   }
 
-  const handleAutomationCreated = (newAutomation: Automation) => {
-    setAutomations(prev => [newAutomation, ...prev])
-    setShowCreateDialog(false)
-  }
-
   const handleEdit = (automation: Automation) => {
-    setEditingAutomation(automation)
+    navigate(`/automations/${automation.id}/edit`)
   }
 
-  const handleAutomationUpdated = (updated: Automation) => {
-    setAutomations(prev => prev.map(a => a.id === updated.id ? updated : a))
-    setEditingAutomation(null)
+  const handleCreate = () => {
+    navigate('/automations/new')
   }
 
   const handleConnectInstagram = async () => {
@@ -234,7 +224,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">Automations</h2>
           <Button
-            onClick={() => setShowCreateDialog(true)}
+            onClick={handleCreate}
             disabled={!instagramAccount}
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -263,7 +253,7 @@ export default function Dashboard() {
                   : 'Connect your Instagram account first to create automations'}
               </p>
               {instagramAccount && (
-                <Button onClick={() => setShowCreateDialog(true)}>
+                <Button onClick={handleCreate}>
                   <Plus className="h-4 w-4 mr-2" />
                   Create Your First Automation
                 </Button>
@@ -378,27 +368,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Create Automation Dialog */}
-      {instagramAccount && (
-        <CreateAutomationDialog
-          open={showCreateDialog}
-          onOpenChange={setShowCreateDialog}
-          instagramAccountId={instagramAccount.id}
-          instagramUsername={instagramAccount.username}
-          onSuccess={handleAutomationCreated}
-        />
-      )}
-
-      {/* Edit Automation Dialog */}
-      {editingAutomation && (
-        <EditAutomationDialog
-          open={!!editingAutomation}
-          onOpenChange={(open) => !open && setEditingAutomation(null)}
-          automation={editingAutomation}
-          instagramUsername={instagramAccount?.username}
-          onSuccess={handleAutomationUpdated}
-        />
-      )}
     </div>
   )
 }

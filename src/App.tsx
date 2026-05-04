@@ -1,4 +1,5 @@
 import { BrowserRouter, HashRouter } from 'react-router'
+import { Toaster } from 'sonner'
 import { ThemeProvider } from './contexts/ThemeContext'
 import Router from './Router'
 import { AuthProvider } from './contexts/AuthContext'
@@ -11,6 +12,7 @@ export default function App() {
             <AppRouter>
                 <AuthProvider>
                     <Router />
+                    <Toaster richColors closeButton position="bottom-center" />
                 </AuthProvider>
             </AppRouter>
         </ThemeProvider>

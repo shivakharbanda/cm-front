@@ -4,6 +4,7 @@ import {
 	login as authLogin,
 	logout as authLogout,
 	getCurrentUser,
+	sendEmailVerification,
 	User
 } from "@/lib/auth"
 
@@ -13,6 +14,7 @@ type AuthContextType = {
 	user: User | null
 	login: (email: string, password: string) => Promise<void>
 	logout: () => Promise<void>
+	resendVerification: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -59,13 +61,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		navigate("/login")
 	}, [navigate])
 
+	const resendVerification = useCallback(async () => {
+		await sendEmailVerification()
+	}, [])
+
 	const value = useMemo(() => ({
 		isAuthenticated,
 		loading,
 		user,
 		login,
 		logout,
-	}), [isAuthenticated, loading, user, logout])
+		resendVerification,
+	}), [isAuthenticated, loading, user, logout, resendVerification])
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

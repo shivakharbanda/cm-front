@@ -11,6 +11,11 @@ import BioAnalyticsPage from './pages/bio/BioAnalyticsPage'
 import BioSettingsPage from './pages/bio/BioSettingsPage'
 import PublicBioPage from './pages/PublicBioPage'
 import AutomationAnalyticsPage from './pages/AutomationAnalyticsPage'
+import CreateAutomationPage from './pages/CreateAutomationPage'
+import EditAutomationPage from './pages/EditAutomationPage'
+import ForgotPasswordForm from './pages/ForgotPasswordForm'
+import ResetPasswordForm from './pages/ResetPasswordForm'
+import VerifyEmailPage from './pages/VerifyEmailPage'
 
 export default function Router() {
     return (
@@ -24,9 +29,14 @@ export default function Router() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="login" element={<LoginForm />} />
                 <Route path="register" element={<RegistrationForm />} />
+                <Route path="forgot-password" element={<ForgotPasswordForm />} />
+                <Route path="reset-password" element={<ResetPasswordForm />} />
+                <Route path="verify-email" element={<VerifyEmailPage />} />
                 <Route path="auth/instagram/callback" element={<InstagramCallback />} />
 
                 {/* Automation routes */}
+                <Route path="automations/new" element={<CreateAutomationPage />} />
+                <Route path="automations/:id/edit" element={<EditAutomationPage />} />
                 <Route path="automations/:id/analytics" element={<AutomationAnalyticsPage />} />
 
                 {/* Bio routes */}
