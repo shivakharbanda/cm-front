@@ -3,6 +3,8 @@ import { AppLayout } from './components/app-layout'
 import NotMatch from './pages/NotMatch'
 import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
+import TermsPage from './pages/TermsPage'
+import PrivacyPage from './pages/PrivacyPage'
 import RegistrationForm from './pages/RegistrationForm'
 import LoginForm from './pages/LoginForm'
 import InstagramCallback from './pages/InstagramCallback'
@@ -23,6 +25,8 @@ export default function Router() {
             {/* Bare public routes (no app chrome) */}
             <Route path="" element={<Home />} />
             <Route path="bio/:slug" element={<PublicBioPage />} />
+            <Route path="terms" element={<TermsPage />} />
+            <Route path="privacy" element={<PrivacyPage />} />
 
             {/* Authenticated routes with app layout */}
             <Route element={<AppLayout />}>
