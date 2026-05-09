@@ -1,10 +1,10 @@
 import { Instagram } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const COLUMNS: Array<[string, string[]]> = [
     ['Product', ['Automations', 'Link in bio', 'Analytics', 'Changelog']],
     ['Company', ['About', 'Blog', 'Careers', 'Contact']],
     ['Resources', ['Docs', 'Guides', 'API', 'Status']],
-    ['Legal', ['Privacy', 'Terms', 'DPA', 'Cookies']],
 ]
 
 export function MarketingFooter() {
@@ -37,6 +37,29 @@ export function MarketingFooter() {
                             </ul>
                         </div>
                     ))}
+                    <div>
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-3">
+                            Legal
+                        </div>
+                        <ul className="space-y-2">
+                            <li>
+                                <Link to="/privacy" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
+                                    Privacy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/terms" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
+                                    Terms
+                                </Link>
+                            </li>
+                            <li>
+                                <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">DPA</a>
+                            </li>
+                            <li>
+                                <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">Cookies</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div className="border-t">
