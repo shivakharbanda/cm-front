@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { MarketingNav } from '@/components/marketing/marketing-nav'
 import { MarketingFooter } from '@/components/marketing/marketing-footer'
 import { Input } from '@/components/ui/input'
@@ -26,7 +25,7 @@ interface BloggerFeedData {
 
 declare global {
     interface Window {
-        renderBloggerFeed: (data: BloggerFeedData) => void
+        renderBloggerFeed?: (data: BloggerFeedData) => void
     }
 }
 
@@ -230,7 +229,7 @@ export default function BlogPage() {
         document.head.appendChild(script)
 
         return () => {
-            delete (window as Window & { renderBloggerFeed?: unknown }).renderBloggerFeed
+            delete window.renderBloggerFeed
             script?.remove()
         }
     }, [])
