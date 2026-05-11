@@ -13,7 +13,7 @@ type VerifyState = 'verifying' | 'success' | 'error'
 export default function VerifyEmailPage() {
     const [searchParams] = useSearchParams()
     const token = searchParams.get('token')
-    const { isAuthenticated, resendVerification } = useAuth()
+    const { isAuthenticated, resendVerification, refreshUser } = useAuth()
 
     const [state, setState] = useState<VerifyState>(token ? 'verifying' : 'error')
     const [errorMessage, setErrorMessage] = useState('Invalid or missing verification link.')
@@ -24,7 +24,10 @@ export default function VerifyEmailPage() {
         if (!token) return
 
         verifyEmail(token)
-            .then(() => setState('success'))
+            .then(() => {
+                setState('success')
+                refreshUser().catch(() => {})
+            })
             .catch((err) => {
                 setErrorMessage(
                     err instanceof Error ? err.message : 'Verification failed. The link may be expired or already used.'
