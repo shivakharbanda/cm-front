@@ -15,6 +15,7 @@ type AuthContextType = {
 	login: (email: string, password: string) => Promise<void>
 	logout: () => Promise<void>
 	resendVerification: () => Promise<void>
+	refreshUser: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -65,6 +66,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		await sendEmailVerification()
 	}, [])
 
+	const refreshUser = useCallback(async () => {
+		const u = await getCurrentUser()
+		setUser(u)
+	}, [])
+
 	const value = useMemo(() => ({
 		isAuthenticated,
 		loading,
@@ -72,7 +78,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		login,
 		logout,
 		resendVerification,
-	}), [isAuthenticated, loading, user, logout, resendVerification])
+		refreshUser,
+	}), [isAuthenticated, loading, user, logout, resendVerification, refreshUser])
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

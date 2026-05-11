@@ -15,10 +15,6 @@ const ITEMS: Array<[question: string, answer: string]> = [
         'Yes. One button, no email-a-human. Your data exports as CSV on the way out.',
     ],
     [
-        'Does the bio page work on my own domain?',
-        'On Creator and Studio, yes. Set a CNAME and we handle the SSL.',
-    ],
-    [
         'What happens to automations if I disconnect Instagram?',
         'They pause. Reconnect and they resume exactly where they were.',
     ],

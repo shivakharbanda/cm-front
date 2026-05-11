@@ -146,7 +146,7 @@ export function HeroPhoneBio({ compact = false }: HeroPhoneBioProps) {
 
 export function Hero({ headline, onPrimaryCta, onSecondaryCta }: HeroProps) {
     const sub =
-        "Auto-DM commenters, run a publishable link-in-bio, see what's working. One tool, two surfaces, zero copywriting on weekends."
+        "Auto-DM commenters and see what's working. One quiet tool, zero copywriting on weekends."
 
     return (
         <section className="relative overflow-hidden">
@@ -159,36 +159,35 @@ export function Hero({ headline, onPrimaryCta, onSecondaryCta }: HeroProps) {
                 }}
             />
             <div className="relative w-full max-w-[1200px] mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground mb-5">
-                    <span className="inline-block w-6 h-px bg-primary" />
-                    For creators on Instagram
-                </div>
-                <h1 className="text-[38px] md:text-[56px] font-bold leading-[1.04] tracking-[-0.02em] max-w-[860px] text-balance">
-                    {headline}
-                </h1>
-                <p className="mt-5 md:mt-6 text-[17px] md:text-[19px] text-muted-foreground max-w-[620px] leading-relaxed">
-                    {sub}
-                </p>
-                <div className="mt-8 flex flex-wrap items-center gap-3">
-                    <Button size="lg" onClick={onPrimaryCta}>
-                        Get started free
-                        <ArrowRight className="size-4" />
-                    </Button>
-                    <Button size="lg" variant="outline" onClick={onSecondaryCta}>
-                        <Instagram className="size-4" />
-                        Connect Instagram
-                    </Button>
-                    <span className="text-[13px] text-muted-foreground ml-1">Free forever. No card required.</span>
-                </div>
+                <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                    {/* Left: text + CTAs */}
+                    <div>
+                        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground mb-5">
+                            <span className="inline-block w-6 h-px bg-primary" />
+                            For creators on Instagram
+                        </div>
+                        <h1 className="text-[36px] md:text-[46px] font-bold leading-[1.04] tracking-[-0.02em] text-balance">
+                            {headline}
+                        </h1>
+                        <p className="mt-5 md:mt-6 text-[17px] md:text-[18px] text-muted-foreground leading-relaxed">
+                            {sub}
+                        </p>
+                        <div className="mt-8 flex flex-wrap items-center gap-3">
+                            <Button size="lg" onClick={onPrimaryCta}>
+                                Get started free
+                                <ArrowRight className="size-4" />
+                            </Button>
+                            <Button size="lg" variant="outline" onClick={onSecondaryCta}>
+                                <Instagram className="size-4" />
+                                Connect Instagram
+                            </Button>
+                            <span className="text-[13px] text-muted-foreground ml-1">Free forever. No card required.</span>
+                        </div>
+                    </div>
 
-                <div className="mt-14 md:mt-20 relative">
-                    <div className="grid md:grid-cols-[1.35fr_1fr] gap-6 md:gap-10 items-center">
-                        <div className="relative">
-                            <HeroDashboardMini />
-                        </div>
-                        <div className="flex md:justify-start justify-center">
-                            <HeroPhoneBio compact />
-                        </div>
+                    {/* Right: dashboard image */}
+                    <div className="w-full">
+                        <HeroDashboardMini />
                     </div>
                 </div>
             </div>

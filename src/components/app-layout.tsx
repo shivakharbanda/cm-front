@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router'
 import { AppHeader } from './app-header'
-import { AppFooter } from './app-footer'
-import { BottomNav } from './app-bottomnav'
+import { MarketingFooter } from './marketing/marketing-footer'
 import { InstallPrompt } from './InstallPrompt'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { useAuth } from '@/contexts/AuthContext'
@@ -61,9 +60,8 @@ export function AppLayout() {
                 <div className='flex flex-grow flex-col'>
                     <Outlet />
                 </div>
-                <AppFooter />
             </div>
-            <BottomNav />
+            <MarketingFooter />
             <InstallPrompt />
         </div>
     )

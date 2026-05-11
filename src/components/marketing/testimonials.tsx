@@ -11,7 +11,7 @@ const CARDS: Card[] = [
     },
     {
         quote:
-            'The bio page finally gave me somewhere to put everything without feeling tacky. Drag-to-reorder is the move.',
+            'Automations handle the repetitive stuff so I can actually focus on making work worth posting.',
         name: 'Mira Ceramics',
         handle: '12k followers · studio potter',
     },

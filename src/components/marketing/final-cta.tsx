@@ -24,7 +24,7 @@ export function FinalCTA({ onPrimaryCta }: FinalCtaProps) {
                         Stop losing leads to a crowded DM inbox.
                     </h2>
                     <p className="mt-4 text-[16px] md:text-[17px] text-muted-foreground max-w-[520px] mx-auto">
-                        Set up your first automation in about four minutes. Free forever on the Starter plan.
+                        Set up your first automation in about four minutes. Free to use. No credit card, no catch.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-3">
                         <Button size="lg" onClick={onPrimaryCta}>

@@ -2,7 +2,7 @@ import { Instagram } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const COLUMNS: Array<[string, string[]]> = [
-    ['Product', ['Automations', 'Link in bio', 'Analytics', 'Changelog']],
+    ['Product', ['Automations', 'Analytics', 'Changelog']],
     ['Company', ['About', 'Blog', 'Careers', 'Contact']],
     ['Resources', ['Docs', 'Guides', 'API', 'Status']],
 ]
@@ -56,7 +56,7 @@ export function MarketingFooter() {
                                 <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">DPA</a>
                             </li>
                             <li>
-                                <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">Cookies</a>
+                                <Link to="/cookies" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">Cookies</Link>
                             </li>
                         </ul>
                     </div>
