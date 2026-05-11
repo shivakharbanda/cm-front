@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight, Instagram } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/AuthContext'
+import { ModeToggle } from '@/components/mode-toggle'
 
 type NavProps = {
     onScrollTo: (id: string) => void
@@ -9,7 +10,6 @@ type NavProps = {
 
 const LINKS: Array<{ label: string; anchor?: string }> = [
     { label: 'Product', anchor: 'features' },
-    { label: 'Bio' },
     { label: 'Pricing', anchor: 'pricing' },
     { label: 'Docs' },
     { label: 'Changelog' },
@@ -39,6 +39,7 @@ export function MarketingNav({ onScrollTo }: NavProps) {
                     ))}
                 </nav>
                 <div className="flex-1" />
+                <ModeToggle />
                 {isAuthenticated ? (
                     <Button size="sm" onClick={() => navigate('/dashboard')}>
                         Open dashboard

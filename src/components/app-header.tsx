@@ -11,6 +11,7 @@ import { ChevronDown } from 'lucide-react'
 import { AppLogo } from './app-logo'
 import { AppSidebar } from './app-sidebar'
 import { AuthButtons } from './auth-btns'
+import { ModeToggle } from './mode-toggle'
 
 export function AppHeader() {
     const location = useLocation()
@@ -79,8 +80,11 @@ export function AppHeader() {
 
                     <div className="flex-1" />
 
-                    <div className="hidden md:flex">
-                        <AuthButtons variant="header" />
+                    <div className="flex items-center gap-2">
+                        <ModeToggle />
+                        <div className="hidden md:flex">
+                            <AuthButtons variant="header" />
+                        </div>
                     </div>
                 </div>
             </div>

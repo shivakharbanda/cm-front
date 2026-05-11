@@ -5,13 +5,10 @@ import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import TermsPage from './pages/TermsPage'
 import PrivacyPage from './pages/PrivacyPage'
+import CookiesPage from './pages/CookiesPage'
 import RegistrationForm from './pages/RegistrationForm'
 import LoginForm from './pages/LoginForm'
 import InstagramCallback from './pages/InstagramCallback'
-import BioEditorPage from './pages/bio/BioEditorPage'
-import BioAnalyticsPage from './pages/bio/BioAnalyticsPage'
-import BioSettingsPage from './pages/bio/BioSettingsPage'
-import PublicBioPage from './pages/PublicBioPage'
 import AutomationAnalyticsPage from './pages/AutomationAnalyticsPage'
 import CreateAutomationPage from './pages/CreateAutomationPage'
 import EditAutomationPage from './pages/EditAutomationPage'
@@ -24,9 +21,9 @@ export default function Router() {
         <Routes>
             {/* Bare public routes (no app chrome) */}
             <Route path="" element={<Home />} />
-            <Route path="bio/:slug" element={<PublicBioPage />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="cookies" element={<CookiesPage />} />
 
             {/* Authenticated routes with app layout */}
             <Route element={<AppLayout />}>
@@ -42,11 +39,6 @@ export default function Router() {
                 <Route path="automations/new" element={<CreateAutomationPage />} />
                 <Route path="automations/:id/edit" element={<EditAutomationPage />} />
                 <Route path="automations/:id/analytics" element={<AutomationAnalyticsPage />} />
-
-                {/* Bio routes */}
-                <Route path="bio" element={<BioEditorPage />} />
-                <Route path="bio/analytics" element={<BioAnalyticsPage />} />
-                <Route path="bio/settings" element={<BioSettingsPage />} />
 
                 <Route path="*" element={<NotMatch />} />
             </Route>
