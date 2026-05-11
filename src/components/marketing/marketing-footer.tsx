@@ -1,10 +1,19 @@
 import { Instagram } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const COLUMNS: Array<[string, string[]]> = [
-    ['Product', ['Automations', 'Analytics', 'Changelog']],
-    ['Company', ['About', 'Blog', 'Careers', 'Contact']],
-    ['Resources', ['Docs', 'Guides', 'API', 'Status']],
+
+const COMPANY_LINKS: Array<[string, string]> = [
+    ['About', '/about'],
+    ['Blog', '/blog'],
+    ['Careers', '/careers'],
+    ['Contact', '/contact'],
+]
+
+const LEGAL_LINKS: Array<[string, string]> = [
+    ['Privacy', '/privacy'],
+    ['Terms', '/terms'],
+    ['DPA', '/dpa'],
+    ['Cookies', '/cookies'],
 ]
 
 export function MarketingFooter() {
@@ -20,44 +29,36 @@ export function MarketingFooter() {
                         Quiet tools for loud inboxes. Made for creators who'd rather make things.
                     </p>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {COLUMNS.map(([heading, items]) => (
-                        <div key={heading}>
-                            <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-3">
-                                {heading}
-                            </div>
-                            <ul className="space-y-2">
-                                {items.map(item => (
-                                    <li key={item}>
-                                        <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">
-                                            {item}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+                    {/* Company */}
+                    <div>
+                        <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-3">
+                            Company
                         </div>
-                    ))}
+                        <ul className="space-y-2">
+                            {COMPANY_LINKS.map(([label, to]) => (
+                                <li key={label}>
+                                    <Link to={to} className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
+                                        {label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Legal */}
                     <div>
                         <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground mb-3">
                             Legal
                         </div>
                         <ul className="space-y-2">
-                            <li>
-                                <Link to="/privacy" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
-                                    Privacy
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/terms" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
-                                    Terms
-                                </Link>
-                            </li>
-                            <li>
-                                <a className="text-[13px] text-foreground/80 hover:text-foreground cursor-pointer transition-colors">DPA</a>
-                            </li>
-                            <li>
-                                <Link to="/cookies" className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">Cookies</Link>
-                            </li>
+                            {LEGAL_LINKS.map(([label, to]) => (
+                                <li key={label}>
+                                    <Link to={to} className="text-[13px] text-foreground/80 hover:text-foreground transition-colors">
+                                        {label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
