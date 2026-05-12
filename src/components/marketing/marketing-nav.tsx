@@ -1,8 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight, Instagram } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/AuthContext'
 import { ModeToggle } from '@/components/mode-toggle'
+import { AppLogo } from '@/components/app-logo'
 
 type NavProps = {
     onScrollTo: (id: string) => void
@@ -22,9 +23,8 @@ export function MarketingNav({ onScrollTo }: NavProps) {
     return (
         <header className="sticky top-0 z-40 bg-background/85 backdrop-blur-md border-b">
             <div className="w-full max-w-[1200px] mx-auto flex items-center gap-2 h-14 px-6 md:px-8">
-                <Link to="/" className="flex items-center gap-2">
-                    <Instagram className="size-[22px] text-primary" />
-                    <span className="font-semibold text-[15px] tracking-tight">CreatorModo</span>
+                <Link to="/">
+                    <AppLogo textClassName="hidden sm:block" />
                 </Link>
                 <nav className="hidden md:flex gap-1 ml-8">
                     {LINKS.map(({ label, anchor }) => (
@@ -39,7 +39,9 @@ export function MarketingNav({ onScrollTo }: NavProps) {
                     ))}
                 </nav>
                 <div className="flex-1" />
-                <ModeToggle />
+                <div className="hidden sm:block">
+                    <ModeToggle />
+                </div>
                 {isAuthenticated ? (
                     <Button size="sm" onClick={() => navigate('/dashboard')}>
                         Open dashboard
@@ -49,13 +51,13 @@ export function MarketingNav({ onScrollTo }: NavProps) {
                     <>
                         <Link
                             to="/login"
-                            className="hidden md:flex h-8 px-3 items-center rounded-md text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+                            className="flex h-8 px-3 items-center rounded-md text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
                         >
                             Sign in
                         </Link>
-                        <Button size="sm" onClick={() => onScrollTo('pricing')}>
+                        <Button size="sm" onClick={() => navigate('/register')}>
                             Get started
-                            <ArrowRight className="size-3.5" />
+                            <ArrowRight className="hidden sm:block size-3.5" />
                         </Button>
                     </>
                 )}

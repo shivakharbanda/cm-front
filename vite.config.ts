@@ -35,8 +35,8 @@ export default defineConfig(({ mode }) => {
           short_name: "CreatorModo",
           start_url: "/",
           display: "standalone",
-          background_color: "#ffffff",
-          theme_color: "#000000",
+          background_color: "#0D1117",
+          theme_color: "#0D1117",
           icons: [
             {
               src: "/pwa-icon-192.png",
@@ -47,6 +47,18 @@ export default defineConfig(({ mode }) => {
               src: "/pwa-icon-512.png",
               sizes: "512x512",
               type: "image/png",
+            },
+            {
+              src: "/icon-192.png",
+              sizes: "192x192",
+              type: "image/png",
+              purpose: "any",
+            },
+            {
+              src: "/icon-512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "maskable any",
             },
           ],
         },

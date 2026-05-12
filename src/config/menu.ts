@@ -1,7 +1,5 @@
 import {
     LayoutDashboard,
-    Instagram,
-    Settings,
     LucideIcon
 } from 'lucide-react'
 
@@ -19,15 +17,5 @@ export const mainMenu: MenuType = [
         title: 'Dashboard',
         url: '/dashboard',
         icon: LayoutDashboard
-    },
-    {
-        title: 'Instagram',
-        url: '/instagram',
-        icon: Instagram
-    },
-    {
-        title: 'Settings',
-        url: '/settings',
-        icon: Settings
     },
 ]

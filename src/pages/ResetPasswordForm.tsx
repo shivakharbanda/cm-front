@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, Lock, Instagram } from 'lucide-react'
+import { Eye, EyeOff, Lock } from 'lucide-react'
 import { confirmPasswordReset } from '@/lib/auth'
-import { appConfig } from '@/config/app'
+import { AppLogo } from '@/components/app-logo'
 
 export default function ResetPasswordForm() {
     const navigate = useNavigate()
@@ -88,11 +88,8 @@ export default function ResetPasswordForm() {
         <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12">
             <Card className="w-full max-w-md">
                 <CardHeader className="space-y-1 text-center">
-                    <div className="flex items-center justify-center mb-4">
-                        <div className="flex items-center space-x-2">
-                            <Instagram className="h-8 w-8 text-primary" />
-                            <span className="text-2xl font-bold text-primary">{appConfig.name}</span>
-                        </div>
+                    <div className="flex justify-center mb-4">
+                        <AppLogo />
                     </div>
                     <CardTitle className="text-2xl font-semibold">Set new password</CardTitle>
                     <CardDescription>
