@@ -1,5 +1,5 @@
-import { Instagram } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { AppLogo } from '@/components/app-logo'
 
 
 const COMPANY_LINKS: Array<[string, string]> = [
@@ -21,9 +21,8 @@ export function MarketingFooter() {
         <footer className="border-t bg-card/40">
             <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-14 grid md:grid-cols-[1.5fr_3fr] gap-10">
                 <div>
-                    <div className="flex items-center gap-2 mb-3">
-                        <Instagram className="size-[22px] text-primary" />
-                        <span className="font-semibold text-[15px] tracking-tight">CreatorModo</span>
+                    <div className="mb-3">
+                        <AppLogo />
                     </div>
                     <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[280px]">
                         Quiet tools for loud inboxes. Made for creators who'd rather make things.

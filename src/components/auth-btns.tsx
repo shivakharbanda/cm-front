@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
-import { Button } from '@mui/material'
+import { Button } from '@/components/ui/button'
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { usePWAInstall } from '@/hooks/use-pwa-install'
 import { Download } from 'lucide-react'
@@ -30,39 +30,19 @@ export function AuthButtons({ variant, onItemClick }: AuthButtonsProps) {
 
     if (variant === 'header') {
         return (
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center gap-1">
                 {isAuthenticated ? (
-                    <Button
-                        variant="text"
-                        size="small"
-                        onClick={handleLogout}
-                        className="text-sm font-medium"
-                        sx={{ textTransform: 'none' }}
-                    >
+                    <Button variant="ghost" size="sm" onClick={handleLogout}>
                         Sign out
                     </Button>
                 ) : (
                     <>
-                        <Link to="/login">
-                            <Button 
-                                variant="text" 
-                                size="small" 
-                                className="text-sm font-medium" 
-                                sx={{ textTransform: 'none' }}
-                            >
-                                Sign in
-                            </Button>
-                        </Link>
-                        <Link to="/register">
-                            <Button 
-                                variant="outlined" 
-                                size="small" 
-                                className="text-sm font-medium" 
-                                sx={{ textTransform: 'none' }}
-                            >
-                                Sign up
-                            </Button>
-                        </Link>
+                        <Button variant="ghost" size="sm" asChild>
+                            <Link to="/login">Sign in</Link>
+                        </Button>
+                        <Button size="sm" asChild>
+                            <Link to="/register">Sign up</Link>
+                        </Button>
                     </>
                 )}
             </div>

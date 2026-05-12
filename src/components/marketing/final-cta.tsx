@@ -1,4 +1,5 @@
-import { ArrowRight, Calendar } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 type FinalCtaProps = {
@@ -26,15 +27,17 @@ export function FinalCTA({ onPrimaryCta }: FinalCtaProps) {
                     <p className="mt-4 text-[16px] md:text-[17px] text-muted-foreground max-w-[520px] mx-auto">
                         Set up your first automation in about four minutes. Free to use. No credit card, no catch.
                     </p>
-                    <div className="mt-8 flex flex-wrap justify-center gap-3">
+                    <div className="mt-8 flex flex-col items-center gap-3">
                         <Button size="lg" onClick={onPrimaryCta}>
                             Get started free
                             <ArrowRight className="size-4" />
                         </Button>
-                        <Button size="lg" variant="outline">
-                            <Calendar className="size-4" />
-                            Book a 15-min demo
-                        </Button>
+                        <Link
+                            to="/contact"
+                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                            Have questions? Talk to us →
+                        </Link>
                     </div>
                 </div>
             </div>

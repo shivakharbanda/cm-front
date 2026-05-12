@@ -3,10 +3,10 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { CheckCircle, AlertCircle, Loader2, Instagram } from 'lucide-react'
+import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { verifyEmail } from '@/lib/auth'
 import { useAuth } from '@/contexts/AuthContext'
-import { appConfig } from '@/config/app'
+import { AppLogo } from '@/components/app-logo'
 
 type VerifyState = 'verifying' | 'success' | 'error'
 
@@ -52,11 +52,8 @@ export default function VerifyEmailPage() {
         <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12">
             <Card className="w-full max-w-md">
                 <CardHeader className="space-y-1 text-center">
-                    <div className="flex items-center justify-center mb-4">
-                        <div className="flex items-center space-x-2">
-                            <Instagram className="h-8 w-8 text-primary" />
-                            <span className="text-2xl font-bold text-primary">{appConfig.name}</span>
-                        </div>
+                    <div className="flex justify-center mb-4">
+                        <AppLogo />
                     </div>
                     <CardTitle className="text-2xl font-semibold">Email verification</CardTitle>
                     <CardDescription>
