@@ -1,4 +1,4 @@
-import { fetcher } from './api'
+import { fetcher, ApiError } from './api'
 
 export interface User {
   id: string
@@ -75,8 +75,9 @@ export const verifyEmail = async (token: string): Promise<void> => {
   })
 }
 
-// Authenticated fetcher - just use the regular fetcher since cookies are sent automatically
-// Handles 401 errors by attempting token refresh
+// Single in-flight refresh shared across all parallel callers
+let refreshPromise: Promise<User> | null = null
+
 export const authenticatedFetcher = async <T = unknown>(
   path: string,
   options?: RequestInit
@@ -84,18 +85,25 @@ export const authenticatedFetcher = async <T = unknown>(
   try {
     return await fetcher<T>(path, options)
   } catch (err) {
-    if (err instanceof Error && err.message.includes('401')) {
-      try {
-        // Attempt to refresh tokens
-        await refreshTokens()
-        // Retry the original request
-        return await fetcher<T>(path, options)
-      } catch {
-        // Refresh failed, redirect to login
-        window.location.href = '/login'
-        throw new Error('Session expired. Please log in again.')
-      }
+    // Only intercept 401 — let everything else (500, network errors) bubble up
+    if (!(err instanceof ApiError && err.status === 401)) throw err
+
+    // Deduplicate: reuse an in-flight refresh so parallel 401s don't race
+    if (!refreshPromise) {
+      refreshPromise = refreshTokens().finally(() => { refreshPromise = null })
     }
-    throw err
+
+    try {
+      await refreshPromise
+    } catch (refreshErr) {
+      // Refresh itself 401'd → session is truly dead → notify AuthContext to logout
+      if (refreshErr instanceof ApiError && refreshErr.status === 401) {
+        window.dispatchEvent(new Event('auth:session-expired'))
+      }
+      throw refreshErr
+    }
+
+    // Refresh succeeded — new cookie is set, retry with it automatically
+    return await fetcher<T>(path, options)
   }
 }

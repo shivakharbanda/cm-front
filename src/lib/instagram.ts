@@ -1,4 +1,5 @@
 import { authenticatedFetcher } from './auth'
+import { ApiError } from './api'
 import type { InstagramAccount, InstagramPostsResponse, InstagramAuthURL } from '@/types'
 
 const API_PREFIX = '/api/v1/instagram'
@@ -19,7 +20,7 @@ export async function getInstagramAccount(): Promise<InstagramAccount | null> {
   try {
     return await authenticatedFetcher<InstagramAccount>(`${API_PREFIX}/account`)
   } catch (error) {
-    if (error instanceof Error && error.message.includes('404')) {
+    if (error instanceof ApiError && error.status === 404) {
       return null
     }
     throw error

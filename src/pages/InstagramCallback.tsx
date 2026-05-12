@@ -12,17 +12,12 @@ type CallbackStatus = 'loading' | 'success' | 'error'
 export default function InstagramCallback() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { isAuthenticated, loading: authLoading } = useAuth()
+  const { loading: authLoading } = useAuth()
   const [status, setStatus] = useState<CallbackStatus>('loading')
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (authLoading) return
-
-    if (!isAuthenticated) {
-      navigate('/login')
-      return
-    }
 
     const code = searchParams.get('code')
     const errorParam = searchParams.get('error')
@@ -54,7 +49,7 @@ export default function InstagramCallback() {
     }
 
     exchangeCode()
-  }, [authLoading, isAuthenticated, navigate, searchParams])
+  }, [authLoading, navigate, searchParams])
 
   if (authLoading) {
     return null

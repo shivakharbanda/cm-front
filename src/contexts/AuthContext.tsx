@@ -62,6 +62,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		navigate("/login")
 	}, [navigate])
 
+	// Handle session expiry dispatched by authenticatedFetcher when refresh token is dead
+	useEffect(() => {
+		const handler = () => { logout() }
+		window.addEventListener('auth:session-expired', handler)
+		return () => window.removeEventListener('auth:session-expired', handler)
+	}, [logout])
+
 	const resendVerification = useCallback(async () => {
 		await sendEmailVerification()
 	}, [])
