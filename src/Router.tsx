@@ -15,6 +15,11 @@ import EditAutomationPage from './pages/EditAutomationPage'
 import ForgotPasswordForm from './pages/ForgotPasswordForm'
 import ResetPasswordForm from './pages/ResetPasswordForm'
 import VerifyEmailPage from './pages/VerifyEmailPage'
+import DPAPage from './pages/DPAPage'
+import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
+import CareersPage from './pages/CareersPage'
+import BlogPage from './pages/BlogPage'
 
 export default function Router() {
     return (
@@ -24,6 +29,11 @@ export default function Router() {
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="cookies" element={<CookiesPage />} />
+            <Route path="dpa" element={<DPAPage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="careers" element={<CareersPage />} />
+            <Route path="blog" element={<BlogPage />} />
 
             {/* Authenticated routes with app layout */}
             <Route element={<AppLayout />}>

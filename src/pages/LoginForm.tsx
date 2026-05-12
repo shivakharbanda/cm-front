@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Eye, EyeOff, Mail, Lock, Instagram, CheckCircle } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, CheckCircle } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
-import { appConfig } from '@/config/app'
+import { AppLogo } from '@/components/app-logo'
 
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -80,11 +80,8 @@ export default function LoginForm() {
         <div className="min-h-screen flex items-center justify-center bg-background px-4 py-12">
             <Card className="w-full max-w-md">
                 <CardHeader className="space-y-1 text-center">
-                    <div className="flex items-center justify-center mb-4">
-                        <div className="flex items-center space-x-2">
-                            <Instagram className="h-8 w-8 text-primary" />
-                            <span className="text-2xl font-bold text-primary">{appConfig.name}</span>
-                        </div>
+                    <div className="flex justify-center mb-4">
+                        <AppLogo />
                     </div>
                     <CardTitle className="text-2xl font-semibold">Welcome back</CardTitle>
                     <CardDescription>
