@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
+import { toast } from "sonner"
 import {
 	login as authLogin,
 	logout as authLogout,
@@ -7,6 +8,14 @@ import {
 	sendEmailVerification,
 	User
 } from "@/lib/auth"
+import { ApiError } from "@/lib/api"
+
+const SESSION_HINT_KEY = 'session_hint'
+
+function setSessionHint(email: string | null) {
+	if (email) localStorage.setItem(SESSION_HINT_KEY, email)
+	else localStorage.removeItem(SESSION_HINT_KEY)
+}
 
 type AuthContextType = {
 	isAuthenticated: boolean
@@ -21,22 +30,37 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+	const storedEmail = localStorage.getItem(SESSION_HINT_KEY)
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!storedEmail)
 	const [loading, setLoading] = useState<boolean>(true)
-	const [user, setUser] = useState<User | null>(null)
+	const [user, setUser] = useState<User | null>(
+		storedEmail ? { email: storedEmail } as User : null
+	)
 	const navigate = useNavigate()
 
 	// Check auth status on mount
 	useEffect(() => {
 		const checkAuth = async () => {
+			const hadHint = !!localStorage.getItem(SESSION_HINT_KEY)
 			try {
 				const currentUser = await getCurrentUser()
 				setUser(currentUser)
 				setIsAuthenticated(true)
-			} catch {
-				// Not authenticated or token expired
-				setUser(null)
-				setIsAuthenticated(false)
+				setSessionHint(currentUser.email)
+			} catch (err) {
+				if (err instanceof ApiError && err.status === 401) {
+					// authenticatedFetcher already dispatched auth:session-expired so
+					// logout() will handle state reset, hint clear, and redirect.
+					// Just show a toast if the user expected to be logged in.
+					if (hadHint) {
+						toast.error('Your session has expired. Redirecting to login…')
+					}
+				} else {
+					// Network error or 5xx — do not destroy the session
+					if (hadHint) {
+						toast.warning('Could not verify your session due to a network error.')
+					}
+				}
 			} finally {
 				setLoading(false)
 			}
@@ -49,6 +73,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		const loggedInUser = await authLogin(email, password)
 		setUser(loggedInUser)
 		setIsAuthenticated(true)
+		setSessionHint(loggedInUser.email)
 	}
 
 	const logout = useCallback(async () => {
@@ -59,6 +84,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 		setUser(null)
 		setIsAuthenticated(false)
+		setSessionHint(null)
 		navigate("/login")
 	}, [navigate])
 

@@ -35,20 +35,37 @@ export default function InstagramCallback() {
       return
     }
 
+    let cancelled = false
+
+    const timeoutId = setTimeout(() => {
+      if (!cancelled) {
+        cancelled = true
+        setStatus('error')
+        setError('Connection timed out — please try again.')
+      }
+    }, 45_000)
+
     const exchangeCode = async () => {
       try {
         await handleInstagramCallback(code)
-        setStatus('success')
-        setTimeout(() => {
-          navigate('/dashboard')
-        }, 1500)
+        if (!cancelled) {
+          cancelled = true
+          clearTimeout(timeoutId)
+          setStatus('success')
+          setTimeout(() => navigate('/dashboard'), 1500)
+        }
       } catch (err) {
-        setStatus('error')
-        setError(err instanceof Error ? err.message : 'Failed to connect Instagram account')
+        if (!cancelled) {
+          cancelled = true
+          clearTimeout(timeoutId)
+          setStatus('error')
+          setError(err instanceof Error ? err.message : 'Failed to connect Instagram account')
+        }
       }
     }
 
     exchangeCode()
+    return () => { cancelled = true; clearTimeout(timeoutId) }
   }, [authLoading, navigate, searchParams])
 
   if (authLoading) {

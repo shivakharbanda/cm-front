@@ -1,6 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu'
 import { useAuth } from '@/contexts/AuthContext'
 import { ModeToggle } from '@/components/mode-toggle'
 import { AppLogo } from '@/components/app-logo'
@@ -18,7 +26,7 @@ const LINKS: Array<{ label: string; anchor?: string }> = [
 
 export function MarketingNav({ onScrollTo }: NavProps) {
     const navigate = useNavigate()
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, user, logout } = useAuth()
 
     return (
         <header className="sticky top-0 z-40 bg-background/85 backdrop-blur-md border-b">
@@ -43,10 +51,35 @@ export function MarketingNav({ onScrollTo }: NavProps) {
                     <ModeToggle />
                 </div>
                 {isAuthenticated ? (
-                    <Button size="sm" onClick={() => navigate('/dashboard')}>
-                        Open dashboard
-                        <ArrowRight className="size-3.5" />
-                    </Button>
+                    <>
+                        <Button size="sm" onClick={() => navigate('/dashboard')}>
+                            Dashboard
+                            <ArrowRight className="size-3.5" />
+                        </Button>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="icon" className="rounded-full size-8">
+                                    <Avatar className="size-7">
+                                        <AvatarFallback className="text-xs bg-primary/15 text-primary">
+                                            {user?.email?.[0]?.toUpperCase() ?? '?'}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                                <div className="px-2 py-1.5 text-xs text-muted-foreground truncate">
+                                    {user?.email}
+                                </div>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    onClick={logout}
+                                    className="text-destructive focus:text-destructive"
+                                >
+                                    Sign out
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </>
                 ) : (
                     <>
                         <Link

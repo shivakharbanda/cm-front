@@ -33,9 +33,10 @@ export const logout = async (): Promise<void> => {
   })
 }
 
-// Get current user - checks if authenticated
+// Get current user — uses authenticatedFetcher so an expired access token
+// triggers a silent refresh rather than a false 401 logout.
 export const getCurrentUser = async (): Promise<User> => {
-  return fetcher<User>('/api/v1/auth/me')
+  return authenticatedFetcher<User>('/api/v1/auth/me')
 }
 
 // Refresh tokens - cookies are handled by server
