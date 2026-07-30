@@ -12,9 +12,9 @@ export default function TermsPage() {
                 <p className="text-sm text-muted-foreground mb-10">Last Updated: May 2026</p>
 
                 <p className="text-sm text-foreground/80 leading-relaxed mb-8">
-                    Welcome to <strong>CreaterModo</strong>. These Terms and Conditions govern your use of our website,
-                    products, services, automation systems, and platform operated by CreaterModo ("Company", "we",
-                    "our", or "us"). By accessing or using CreaterModo, you agree to comply with and be bound by these
+                    Welcome to <strong>CreatorModo</strong>. These Terms and Conditions govern your use of our website,
+                    products, services, automation systems, and platform operated by CreatorModo ("Company", "we",
+                    "our", or "us"). By accessing or using CreatorModo, you agree to comply with and be bound by these
                     Terms. If you do not agree with any part of these Terms, please do not use our services.
                 </p>
 
@@ -22,15 +22,15 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">1. Definitions</h2>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed">
-                            <li><strong>Platform</strong> refers to the CreaterModo website, applications, products, and services.</li>
+                            <li><strong>Platform</strong> refers to the CreatorModo website, applications, products, and services.</li>
                             <li><strong>User</strong>, <strong>You</strong>, or <strong>Your</strong> refers to any individual or entity using our platform.</li>
-                            <li><strong>Services</strong> refers to creator tools, automation systems, AI tools, marketing services, educational resources, digital products, consulting, or related offerings provided by CreaterModo.</li>
+                            <li><strong>Services</strong> refers to creator tools, automation systems, AI tools, marketing services, educational resources, digital products, consulting, or related offerings provided by CreatorModo.</li>
                         </ul>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">2. Eligibility</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">By using CreaterModo, you confirm that:</p>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">By using CreatorModo, you confirm that:</p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed">
                             <li>You are at least <strong>14 years old</strong> or have permission from a parent or legal guardian.</li>
                             <li>You have the authority to agree to these Terms.</li>
@@ -40,7 +40,7 @@ export default function TermsPage() {
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">3. Use of Services</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">You agree to use CreaterModo only for lawful purposes. You must not:</p>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">You agree to use CreatorModo only for lawful purposes. You must not:</p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>Use the platform for illegal or fraudulent activities</li>
                             <li>Attempt to hack, damage, disrupt, or misuse our systems</li>
@@ -55,15 +55,15 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">4. Instagram Automation Services</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            CreaterModo may provide automation, messaging, workflow, engagement, or creator-related services
+                            CreatorModo may provide automation, messaging, workflow, engagement, or creator-related services
                             using the Instagram API and Meta technologies. By using these services, you acknowledge and agree that:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>CreaterModo only accesses permissions explicitly granted by you.</li>
+                            <li>CreatorModo only accesses permissions explicitly granted by you.</li>
                             <li>We do not control, manage, or interfere with your Instagram account beyond the permissions you approve.</li>
                             <li>We do not access private information outside the permissions authorized by you through Instagram or Meta.</li>
                             <li>You may revoke permissions at any time through your platform settings.</li>
-                            <li>CreaterModo is not affiliated with, endorsed by, or officially connected to Instagram or Meta Platforms, Inc.</li>
+                            <li>CreatorModo is not affiliated with, endorsed by, or officially connected to Instagram or Meta Platforms, Inc.</li>
                         </ul>
                         <p className="text-sm text-foreground/80 leading-relaxed">
                             You remain responsible for complying with Instagram's Terms of Use, Meta policies, and community guidelines.
@@ -73,17 +73,17 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">5. Intellectual Property</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            All content, branding, designs, graphics, software, text, logos, and materials on CreaterModo are
+                            All content, branding, designs, graphics, software, text, logos, and materials on CreatorModo are
                             owned by or licensed to us and protected under applicable intellectual property laws. You may not:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Republish material from CreaterModo</li>
+                            <li>Republish material from CreatorModo</li>
                             <li>Sell or sublicense our content</li>
                             <li>Copy or duplicate platform assets</li>
                             <li>Use our branding without written permission</li>
                         </ul>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            You retain ownership of any content you submit, but you grant CreaterModo a non-exclusive license
+                            You retain ownership of any content you submit, but you grant CreatorModo a non-exclusive license
                             to use, display, reproduce, and distribute such content for operational and promotional purposes.
                         </p>
                     </section>
@@ -91,7 +91,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">6. Payments &amp; Refunds</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            Certain services or products may require payment. By purchasing from CreaterModo, you agree that:
+                            Certain services or products may require payment. By purchasing from CreatorModo, you agree that:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>Pricing may change without prior notice</li>
@@ -107,7 +107,7 @@ export default function TermsPage() {
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">7. User Content</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">If you submit feedback, comments, media, or content to CreaterModo:</p>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">If you submit feedback, comments, media, or content to CreatorModo:</p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>You confirm that you own or have rights to the content</li>
                             <li>You grant us permission to use it for operational or promotional purposes</li>
@@ -119,7 +119,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">8. Publicity Rights</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            Unless otherwise agreed in writing, you grant CreaterModo permission to use your:
+                            Unless otherwise agreed in writing, you grant CreatorModo permission to use your:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>Name</li>
@@ -138,7 +138,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">9. Disclaimer</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            CreaterModo services are provided on an "as-is" and "as-available" basis. We do not guarantee:
+                            CreatorModo services are provided on an "as-is" and "as-available" basis. We do not guarantee:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>Specific business or growth results</li>
@@ -155,7 +155,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">10. Limitation of Liability</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            To the maximum extent permitted by law, CreaterModo shall not be liable for:
+                            To the maximum extent permitted by law, CreatorModo shall not be liable for:
                         </p>
                         <ul className="list-disc pl-5 space-y-2 text-sm text-foreground/80 leading-relaxed mb-4">
                             <li>Indirect or consequential damages</li>
@@ -186,7 +186,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">12. Changes to Terms</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            We may update these Terms periodically. Continued use of CreaterModo after updates constitutes
+                            We may update these Terms periodically. Continued use of CreatorModo after updates constitutes
                             acceptance of the revised Terms.
                         </p>
                     </section>
@@ -205,10 +205,10 @@ export default function TermsPage() {
                             For any questions regarding these Terms, contact:
                         </p>
                         <p className="text-sm text-foreground/80 leading-relaxed mt-2">
-                            <strong>CreaterModo</strong><br />
+                            <strong>CreatorModo</strong><br />
                             Email:{' '}
-                            <a href="mailto:support@creatermodo.com" className="text-primary hover:underline">
-                                support@creatermodo.com
+                            <a href="mailto:support@creatormodo.com" className="text-primary hover:underline">
+                                support@creatormodo.com
                             </a>
                         </p>
                     </section>

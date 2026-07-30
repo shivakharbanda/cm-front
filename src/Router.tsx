@@ -20,6 +20,7 @@ import ContactPage from './pages/ContactPage'
 import AboutPage from './pages/AboutPage'
 import CareersPage from './pages/CareersPage'
 import BlogPage from './pages/BlogPage'
+import DataDeletionPage from './pages/DataDeletionPage'
 
 export default function Router() {
     return (
@@ -28,6 +29,7 @@ export default function Router() {
             <Route path="" element={<Home />} />
             <Route path="terms" element={<TermsPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
+            <Route path="data-deletion" element={<DataDeletionPage />} />
             <Route path="cookies" element={<CookiesPage />} />
             <Route path="dpa" element={<DPAPage />} />
             <Route path="contact" element={<ContactPage />} />
