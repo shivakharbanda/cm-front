@@ -11,6 +11,7 @@ const COMPANY_LINKS: Array<[string, string]> = [
 
 const LEGAL_LINKS: Array<[string, string]> = [
     ['Privacy', '/privacy'],
+    ['Data Deletion', '/data-deletion'],
     ['Terms', '/terms'],
     ['DPA', '/dpa'],
     ['Cookies', '/cookies'],

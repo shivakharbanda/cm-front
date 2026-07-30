@@ -9,199 +9,162 @@ export default function PrivacyPage() {
             <MarketingNav onScrollTo={noop} />
             <main className="flex-1 w-full max-w-[860px] mx-auto px-6 md:px-8 py-16">
                 <h1 className="text-3xl font-bold tracking-tight mb-2">Privacy Policy</h1>
-                <p className="text-sm text-muted-foreground mb-10">Last Updated: May 2026</p>
+                <p className="text-sm text-muted-foreground mb-10">Last Updated: July 2026</p>
 
                 <p className="text-sm text-foreground/80 leading-relaxed mb-8">
-                    CreaterModo ("we", "our", or "us") values your privacy. This Privacy Policy explains how we collect,
-                    use, store, and protect your information when you use our website, products, services, or automation
-                    systems. By using CreaterModo, you consent to the practices described in this Privacy Policy.
+                    CreatorModo ("we", "our", or "us") values your privacy. This Privacy Policy explains how we
+                    collect, use, store, share, and delete information when you use our website, products, services,
+                    Instagram automation features, and link-in-bio tools.
                 </p>
 
                 <div className="space-y-10">
                     <section>
                         <h2 className="text-xl font-semibold mb-3">1. Information We Collect</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-4">We may collect the following information:</p>
 
-                        <h3 className="text-base font-semibold mb-2">Personal Information</h3>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-2">Including but not limited to:</p>
+                        <h3 className="text-base font-semibold mb-2">Account Information</h3>
                         <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-6">
-                            <li>Name</li>
-                            <li>Email address</li>
-                            <li>Phone number</li>
-                            <li>Billing information</li>
-                            <li>Social media handles</li>
-                            <li>Business information</li>
+                            <li>Email address, login and account status information, and account activity timestamps</li>
+                            <li>Information you submit through contact forms, lead forms, support requests, or email</li>
+                            <li>Bio page content, links, cards, social links, routing rules, and related analytics</li>
                         </ul>
 
                         <h3 className="text-base font-semibold mb-2">Usage Data</h3>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-2">We may automatically collect:</p>
                         <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-6">
-                            <li>IP address</li>
-                            <li>Browser type</li>
-                            <li>Device information</li>
-                            <li>Operating system</li>
-                            <li>Website activity</li>
-                            <li>Session duration</li>
-                            <li>Diagnostic and analytics data</li>
+                            <li>IP address, country-level location, browser type, device information, pages visited, referrer, and diagnostic data</li>
+                            <li>Cookie consent preference and analytics data collected only when analytics cookies are accepted</li>
                         </ul>
 
-                        <h3 className="text-base font-semibold mb-2">Instagram &amp; Meta Permissions</h3>
+                        <h3 className="text-base font-semibold mb-2">Instagram and Meta Platform Data</h3>
                         <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            If you connect your Instagram or Meta account with CreaterModo, we may access limited account
-                            information and permissions explicitly authorized by you through the Instagram API or Meta platform.
-                            This may include:
+                            If you connect Instagram or Meta features, we process the data you authorize through Meta's
+                            OAuth flow, Instagram APIs, and webhooks. Depending on the features you use, this may include:
                         </p>
                         <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Username</li>
-                            <li>Profile information</li>
-                            <li>Messages or conversations required for automation features</li>
-                            <li>Account engagement data</li>
-                            <li>Business account metadata</li>
-                            <li>Permissions necessary for automation workflows</li>
+                            <li>Instagram account identifiers, username, and connection credentials needed to operate the integration</li>
+                            <li>Selected Instagram media information needed to create and run automations</li>
+                            <li>Automation settings such as trigger keywords, selected posts, DM content, buttons, and comment reply content</li>
+                            <li>Comment and commenter information needed to detect triggers and send user-configured responses</li>
+                            <li>Delivery, error, and analytics information needed to show automation history and troubleshoot failures</li>
+                            <li>Webhook event information temporarily processed to run your automations</li>
                         </ul>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            CreaterModo only accesses the permissions and information you explicitly approve. We do not gain
-                            full control of your account, change account settings without authorization, or access information
-                            beyond granted permissions.
+                            CreatorModo only uses Instagram and Meta Platform Data for the features you authorize. We do
+                            not sell Platform Data, use it for eligibility decisions, or use it for surveillance.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold mb-3">2. Cookies &amp; Tracking Technologies</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">We may use cookies and similar technologies to:</p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Improve user experience</li>
-                            <li>Understand visitor behavior</li>
-                            <li>Remember preferences</li>
-                            <li>Analyze platform performance</li>
+                        <h2 className="text-xl font-semibold mb-3">2. How We Use Information</h2>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed">
+                            <li>Provide, secure, debug, and improve CreatorModo</li>
+                            <li>Authenticate users and protect accounts from fraud or unauthorized access</li>
+                            <li>Connect Instagram accounts and operate user-configured comment, DM, and reply automations</li>
+                            <li>Display selected posts, automation analytics, delivery history, and bio page analytics</li>
+                            <li>Send transactional emails such as account verification, password reset, and Instagram connection notices</li>
+                            <li>Respond to support, privacy, deletion, and legal requests</li>
                         </ul>
-                        <p className="text-sm text-foreground/80 leading-relaxed">You can disable cookies through your browser settings.</p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold mb-3">3. How We Use Your Information</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">We use your information to:</p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Provide and improve our services</li>
-                            <li>Process payments</li>
-                            <li>Deliver customer support</li>
-                            <li>Communicate updates and service-related information</li>
-                            <li>Enable automation workflows</li>
-                            <li>Improve platform performance and analytics</li>
-                            <li>Prevent fraud, abuse, or unauthorized activity</li>
+                        <h2 className="text-xl font-semibold mb-3">3. Sharing of Information</h2>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                            We do not sell your personal information or Meta Platform Data. We share information only
+                            when necessary:
+                        </p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed">
+                            <li>With Meta and Instagram when you authorize API calls, webhook subscriptions, DMs, replies, or related requests</li>
+                            <li>With service providers that host, store, deliver email, monitor, analyze, and operate CreatorModo</li>
+                            <li>When required by law, regulation, court order, platform policy, or a valid government request</li>
+                            <li>To protect CreatorModo, our users, Meta products, or the public from fraud, abuse, security threats, or rights violations</li>
                         </ul>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-2">
-                            We use authorized Instagram and Meta data solely for providing the services requested by you.
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-semibold mb-3">4. Cookies and Tracking</h2>
+                        <p className="text-sm text-foreground/80 leading-relaxed">
+                            CreatorModo uses essential cookies for authentication and cookie preferences. We use Google
+                            Analytics only after you accept analytics cookies. You can update your choices on our{' '}
+                            <a href="/cookies" className="text-primary hover:underline">Cookie Policy</a> page.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-semibold mb-3">5. Data Retention and Deletion</h2>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                            We retain information only as long as needed to provide CreatorModo, comply with legal
+                            obligations, resolve disputes, enforce agreements, prevent abuse, and maintain security.
+                        </p>
+                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                            If you disconnect your Instagram account, CreatorModo deletes the Instagram connection data
+                            and automation records tied to that connection, including related delivery history. Public
+                            bio pages, leads, contact requests, or analytics that are separate from the Instagram
+                            connection may remain unless you request deletion of those records too.
                         </p>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            We do not sell your personal information or misuse your account data.
+                            You can request deletion of your CreatorModo account data or Meta Platform Data through our{' '}
+                            <a href="/data-deletion" className="text-primary hover:underline">Data Deletion page</a>.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold mb-3">4. Sharing of Information</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            We do not sell your personal information. We may share information only when necessary:
-                        </p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>To comply with legal obligations</li>
-                            <li>To protect our rights and platform security</li>
-                            <li>With payment providers for transaction processing</li>
-                            <li>With infrastructure or hosting providers necessary to operate our services</li>
-                        </ul>
-                        <p className="text-sm text-foreground/80 leading-relaxed">Any shared data is limited to what is reasonably necessary.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-semibold mb-3">5. Data Retention</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">We retain information only for as long as necessary to:</p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Provide services</li>
-                            <li>Meet legal obligations</li>
-                            <li>Resolve disputes</li>
-                            <li>Enforce agreements</li>
-                        </ul>
-                        <p className="text-sm text-foreground/80 leading-relaxed">Inactive or unnecessary data may be securely deleted or anonymized periodically.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-semibold mb-3">6. Data Security</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            We implement reasonable technical and organizational measures to protect your data. However, no
-                            online system or transmission method is completely secure.
-                        </p>
-                        <p className="text-sm text-foreground/80 leading-relaxed">By using our services, you acknowledge and accept this risk.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-semibold mb-3">7. Third-Party Platforms</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            CreaterModo integrates with Instagram and Meta APIs to provide automation and creator-related services.
-                            Your use of Instagram-connected features is also subject to:
-                        </p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Instagram Terms of Use</li>
-                            <li>Meta Platform Policies</li>
-                        </ul>
+                        <h2 className="text-xl font-semibold mb-3">6. Security</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            CreaterModo is not responsible for restrictions, suspensions, outages, or policy changes imposed
-                            by Instagram or Meta.
+                            We use reasonable technical and organizational measures to protect information. No online
+                            service can guarantee absolute security, but we work to limit access to data and protect it
+                            from unauthorized use.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold mb-3">8. Your Rights</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            Depending on your jurisdiction, you may have rights to:
+                        <h2 className="text-xl font-semibold mb-3">7. Your Rights</h2>
+                        <p className="text-sm text-foreground/80 leading-relaxed">
+                            Depending on your location, you may have rights to access, correct, delete, export, or
+                            restrict use of your information, and to withdraw consent where processing is based on
+                            consent. To exercise these rights, visit our{' '}
+                            <a href="/data-deletion" className="text-primary hover:underline">Data Deletion page</a>{' '}
+                            or contact us using the email below.
                         </p>
-                        <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/80 leading-relaxed mb-4">
-                            <li>Access your personal data</li>
-                            <li>Correct inaccurate information</li>
-                            <li>Request deletion of your data</li>
-                            <li>Withdraw consent</li>
-                            <li>Request data portability where applicable</li>
-                        </ul>
-                        <p className="text-sm text-foreground/80 leading-relaxed">To exercise these rights, contact us using the information below.</p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-xl font-semibold mb-3">8. Third-Party Platforms</h2>
+                        <p className="text-sm text-foreground/80 leading-relaxed">
+                            CreatorModo integrates with Instagram and Meta APIs. Your use of Instagram-connected
+                            features is also subject to Instagram's Terms of Use, Meta Platform Terms, and applicable
+                            Meta developer policies. CreatorModo is not affiliated with or endorsed by Meta Platforms, Inc.
+                        </p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">9. Children's Privacy</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            CreaterModo does not knowingly collect personal information from children under the age of 14.
-                        </p>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            If we discover that information has been collected from a user under 14 where consent is required,
-                            we will take steps to remove that information promptly.
+                            CreatorModo does not knowingly collect personal information from children under 13. If we
+                            learn that we collected such information without required consent, we will delete it promptly.
                         </p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">10. International Data Transfers</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            Your information may be stored or processed in locations outside your country of residence. By
-                            using our services, you consent to such transfers where legally permitted.
+                            Your information may be stored or processed outside your country of residence. We take
+                            reasonable steps to protect information in accordance with this Privacy Policy and applicable law.
                         </p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">11. Changes to This Privacy Policy</h2>
-                        <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                            We may update this Privacy Policy periodically. Changes become effective immediately upon posting
-                            on this page.
+                        <p className="text-sm text-foreground/80 leading-relaxed">
+                            We may update this Privacy Policy periodically. Changes become effective when posted on this page.
                         </p>
-                        <p className="text-sm text-foreground/80 leading-relaxed">We encourage users to review this policy regularly.</p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-semibold mb-3">12. Contact Us</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            If you have questions regarding this Privacy Policy, contact:
-                        </p>
-                        <p className="text-sm text-foreground/80 leading-relaxed mt-2">
-                            <strong>CreaterModo</strong><br />
+                            CreatorModo<br />
                             Email:{' '}
-                            <a href="mailto:support@creatermodo.com" className="text-primary hover:underline">
-                                support@creatermodo.com
+                            <a href="mailto:support@creatormodo.com" className="text-primary hover:underline">
+                                support@creatormodo.com
                             </a>
                         </p>
                     </section>
