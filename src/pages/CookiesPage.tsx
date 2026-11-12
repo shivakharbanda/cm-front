@@ -77,8 +77,8 @@ export default function CookiesPage() {
                         <h2 className="text-xl font-semibold text-foreground mb-3">Contact</h2>
                         <p>
                             Questions about this policy? Email us at{' '}
-                            <a href="mailto:support@creatormodo.com" className="underline hover:text-foreground transition-colors">
-                                support@creatormodo.com
+                            <a href="mailto:team@zerotwolabs.com" className="underline hover:text-foreground transition-colors">
+                                team@zerotwolabs.com
                             </a>
                         </p>
                     </section>

@@ -12,7 +12,9 @@ export default function PrivacyPage() {
                 <p className="text-sm text-muted-foreground mb-10">Last Updated: July 2026</p>
 
                 <p className="text-sm text-foreground/80 leading-relaxed mb-8">
-                    CreatorModo ("we", "our", or "us") values your privacy. This Privacy Policy explains how we
+                    CreatorModo is a product of{' '}
+                    <a href="https://zerotwolabs.com" className="text-primary hover:underline">zerotwolabs.com</a>,
+                    part of NULLABS LLP ("we", "our", or "us"). We value your privacy. This Privacy Policy explains how we
                     collect, use, store, share, and delete information when you use our website, products, services,
                     Instagram automation features, and link-in-bio tools.
                 </p>
@@ -161,10 +163,12 @@ export default function PrivacyPage() {
                     <section>
                         <h2 className="text-xl font-semibold mb-3">12. Contact Us</h2>
                         <p className="text-sm text-foreground/80 leading-relaxed">
-                            CreatorModo<br />
+                            <strong>NULLABS LLP</strong> (operator of CreatorModo, via{' '}
+                            <a href="https://zerotwolabs.com" className="text-primary hover:underline">zerotwolabs.com</a>)<br />
+                            LLPIN: ACZ-4538 · GSTIN: 07ABAFN1931G1ZL<br />
                             Email:{' '}
-                            <a href="mailto:support@creatormodo.com" className="text-primary hover:underline">
-                                support@creatormodo.com
+                            <a href="mailto:team@zerotwolabs.com" className="text-primary hover:underline">
+                                team@zerotwolabs.com
                             </a>
                         </p>
                     </section>

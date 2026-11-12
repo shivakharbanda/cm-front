@@ -21,8 +21,8 @@ export default function DPAPage() {
                         </p>
                         <p className="mt-3">
                             Contact:{' '}
-                            <a href="mailto:support@creatormodo.com" className="underline hover:text-foreground transition-colors">
-                                support@creatormodo.com
+                            <a href="mailto:team@zerotwolabs.com" className="underline hover:text-foreground transition-colors">
+                                team@zerotwolabs.com
                             </a>
                         </p>
                     </section>
