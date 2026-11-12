@@ -35,8 +35,8 @@ export default function DataDeletionPage() {
                         <h2 className="text-xl font-semibold text-foreground mb-3">Request Deletion by Email</h2>
                         <p>
                             If you cannot sign in or want us to delete additional account data, email{' '}
-                            <a href="mailto:support@creatormodo.com" className="underline hover:text-foreground transition-colors">
-                                support@creatormodo.com
+                            <a href="mailto:team@zerotwolabs.com" className="underline hover:text-foreground transition-colors">
+                                team@zerotwolabs.com
                             </a>{' '}
                             with the subject line "Data Deletion Request". Include the email address on your
                             CreatorModo account and the Instagram handle you connected.

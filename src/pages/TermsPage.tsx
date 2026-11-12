@@ -13,8 +13,8 @@ export default function TermsPage() {
 
                 <p className="text-sm text-foreground/80 leading-relaxed mb-8">
                     Welcome to <strong>CreatorModo</strong>. These Terms and Conditions govern your use of our website,
-                    products, services, automation systems, and platform operated by CreatorModo ("Company", "we",
-                    "our", or "us"). By accessing or using CreatorModo, you agree to comply with and be bound by these
+                    products, services, automation systems, and platform operated by NULLABS LLP through its
+                    zerotwolabs.com business ("Company", "we", "our", or "us"). By accessing or using CreatorModo, you agree to comply with and be bound by these
                     Terms. If you do not agree with any part of these Terms, please do not use our services.
                 </p>
 
@@ -205,10 +205,12 @@ export default function TermsPage() {
                             For any questions regarding these Terms, contact:
                         </p>
                         <p className="text-sm text-foreground/80 leading-relaxed mt-2">
-                            <strong>CreatorModo</strong><br />
+                            <strong>NULLABS LLP</strong> (operator of CreatorModo, via{' '}
+                            <a href="https://zerotwolabs.com" className="text-primary hover:underline">zerotwolabs.com</a>)<br />
+                            LLPIN: ACZ-4538 · GSTIN: 07ABAFN1931G1ZL<br />
                             Email:{' '}
-                            <a href="mailto:support@creatormodo.com" className="text-primary hover:underline">
-                                support@creatormodo.com
+                            <a href="mailto:team@zerotwolabs.com" className="text-primary hover:underline">
+                                team@zerotwolabs.com
                             </a>
                         </p>
                     </section>

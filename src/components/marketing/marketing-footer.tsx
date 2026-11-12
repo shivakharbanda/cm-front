@@ -65,7 +65,10 @@ export function MarketingFooter() {
             </div>
             <div className="border-t">
                 <div className="w-full max-w-[1200px] mx-auto px-6 md:px-8 py-5 flex flex-wrap gap-3 items-center justify-between text-[12px] text-muted-foreground">
-                    <div>© 2026 CreatorModo. All rights reserved.</div>
+                    <div>
+                        © 2026 NULLABS LLP. CreatorModo is a product of{' '}
+                        <a href="https://zerotwolabs.com" className="hover:text-foreground transition-colors">zerotwolabs.com</a>.
+                    </div>
                     <div className="flex gap-4">
                         <a className="hover:text-foreground cursor-pointer transition-colors">Twitter</a>
                         <a className="hover:text-foreground cursor-pointer transition-colors">Instagram</a>

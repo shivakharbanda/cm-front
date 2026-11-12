@@ -62,11 +62,11 @@ export default function ContactPage() {
                                 Contact
                             </p>
                             <a
-                                href="mailto:hello@creatormodo.com"
+                                href="mailto:team@zerotwolabs.com"
                                 className="flex items-center gap-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
                             >
                                 <Mail className="size-4 text-primary shrink-0" />
-                                hello@creatormodo.com
+                                team@zerotwolabs.com
                             </a>
                         </div>
 
